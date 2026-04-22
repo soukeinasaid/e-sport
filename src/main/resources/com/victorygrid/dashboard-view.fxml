@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.victorygrid.DashboardController" 
+            styleClass="dashboard-root">
+    
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" spacing="0">
+            <!-- Header -->
+            <HBox styleClass="sidebar-header" alignment="CENTER_LEFT" spacing="10">
+                <Text text="⚔ VictoryGrid" styleClass="sidebar-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="closeButton" text="✕" styleClass="close-button"/>
+            </HBox>
+            
+            <!-- Navigation Menu -->
+            <VBox styleClass="nav-menu" spacing="5">
+                <Button fx:id="homeButton" text="🏠 Home" styleClass="nav-button" graphicTextGap="10">
+                    <graphic>
+                        <Text text="Home" styleClass="nav-icon"/>
+                    </graphic>
+                </Button>
+                <Button fx:id="dashboardButton" text="📊 Dashboard" styleClass="nav-button" graphicTextGap="10">
+                    <graphic>
+                        <Text text="Dashboard" styleClass="nav-icon"/>
+                    </graphic>
+                </Button>
+                <Button fx:id="tournamentsButton" text="🏆 Tournaments" styleClass="nav-button" graphicTextGap="10">
+                    <graphic>
+                        <Text text="Tournaments" styleClass="nav-icon"/>
+                    </graphic>
+                </Button>
+                <Button fx:id="teamsButton" text="👥 Teams" styleClass="nav-button" graphicTextGap="10">
+                    <graphic>
+                        <Text text="Teams" styleClass="nav-icon"/>
+                    </graphic>
+                </Button>
+                <Button fx:id="matchesButton" text="⚔ Matches" styleClass="nav-button" graphicTextGap="10">
+                    <graphic>
+                        <Text text="Matches" styleClass="nav-icon"/>
+                    </graphic>
+                </Button>
+                <Button fx:id="statsButton" text="📈 Stats" styleClass="nav-button" graphicTextGap="10">
+                    <graphic>
+                        <Text text="Stats" styleClass="nav-icon"/>
+                    </graphic>
+                </Button>
+                <Button fx:id="profileButton" text="👤 Profile" styleClass="nav-button selected" graphicTextGap="10">
+                    <graphic>
+                        <Text text="Profile" styleClass="nav-icon"/>
+                    </graphic>
+                </Button>
+                
+                <!-- Admin-only menu item -->
+                <Button fx:id="adminButton" text="⚙ Admin Panel" styleClass="nav-button admin-button" graphicTextGap="10" visible="false">
+                    <graphic>
+                        <Text text="Admin" styleClass="nav-icon"/>
+                    </graphic>
+                </Button>
+            </VBox>
+        </VBox>
+        
+        <!-- User Profile Section -->
+        <VBox styleClass="user-profile" spacing="15" alignment="CENTER">
+            <ImageView fx:id="userAvatar" styleClass="user-avatar" fitWidth="80" fitHeight="80"/>
+            <VBox spacing="5" alignment="CENTER">
+                <Text fx:id="usernameLabel" text="ProGamer123" styleClass="username"/>
+                <Text fx:id="rankLabel" text="Diamond Rank" styleClass="rank"/>
+                <Text fx:id="statusLabel" text="Online" styleClass="status"/>
+            </VBox>
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
+        
+        <!-- Main Content Area -->
+        <center>
+            <StackPane fx:id="contentPane" styleClass="content-area">
+                <!-- Default content will be loaded here -->
+                <Text text="Welcome to VictoryGrid Dashboard" styleClass="welcome-text"/>
+            </StackPane>
+        </center>
+    </BorderPane>

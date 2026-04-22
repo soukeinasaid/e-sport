@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.victorygrid.controller.ProfileController" 
+      spacing="30" alignment="TOP_CENTER" styleClass="profile-container">
+    
+    <VBox spacing="20" alignment="CENTER" maxWidth="600">
+        <Text text="My Profile" styleClass="section-title"/>
+        
+        <!-- Profile Form -->
+        <VBox spacing="15" styleClass="form-container">
+            
+            <!-- User Info Section -->
+            <VBox spacing="10">
+                <Text text="User Information" styleClass="subsection-title"/>
+                
+                <GridPane hgap="15" vgap="10">
+                    <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <TextField fx:id="emailField" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="Current Password:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <PasswordField fx:id="currentPasswordField" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="New Password:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <PasswordField fx:id="newPasswordField" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="Confirm Password:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <PasswordField fx:id="confirmPasswordField" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="form-input"/>
+                </GridPane>
+            </VBox>
+            
+            <!-- Game Stats Section -->
+            <VBox spacing="10">
+                <Text text="Game Statistics" styleClass="subsection-title"/>
+                
+                <GridPane hgap="15" vgap="10">
+                    <Label text="Rank:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <ComboBox fx:id="rankComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="form-combo"/>
+                    
+                    <Label text="Wins:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <Label fx:id="winsLabel" text="0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="stat-label"/>
+                    
+                    <Label text="Losses:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <Label fx:id="lossesLabel" text="0" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="stat-label"/>
+                    
+                    <Label text="Win Rate:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <Label fx:id="winRateLabel" text="0.0%" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="stat-label"/>
+                </GridPane>
+            </VBox>
+            
+            <!-- Action Buttons -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="updateButton" text="Update Profile" styleClass="primary-button"/>
+                <Button fx:id="cancelButton" text="Cancel" styleClass="secondary-button"/>
+            </HBox>
+            
+        </VBox>
+        
+        <!-- Status Message -->
+        <Label fx:id="statusLabel" text="" styleClass="status-label"/>
+        
+    </VBox>
+    
+</VBox>

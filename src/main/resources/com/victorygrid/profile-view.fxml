@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.victorygrid.controller.ProfileController" 
+      spacing="25" alignment="CENTER" styleClass="root" maxWidth="500">
+    
+    <children>
+        <!-- Header with Profile Image -->
+        <HBox spacing="20" alignment="CENTER" styleClass="profile-header">
+            <children>
+                <VBox spacing="10" alignment="CENTER">
+                    <children>
+                        <ImageView fx:id="profileImageView" fitWidth="120" fitHeight="120" styleClass="profile-avatar" />
+                        <Text text="User Profile" styleClass="profile-title" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        
+        <!-- Profile Form -->
+        <VBox spacing="20" maxWidth="450" styleClass="profile-form">
+            <children>
+                <!-- Username Field -->
+                <VBox spacing="8" styleClass="form-field">
+                    <children>
+                        <Label text="Username" styleClass="field-label" />
+                        <TextField fx:id="usernameField" styleClass="input-field" editable="false" />
+                    </children>
+                </VBox>
+                
+                <!-- Email Field -->
+                <VBox spacing="8" styleClass="form-field">
+                    <children>
+                        <Label text="Email Address" styleClass="field-label" />
+                        <TextField fx:id="emailField" styleClass="input-field" editable="false" />
+                    </children>
+                </VBox>
+                
+                <!-- Password Fields -->
+                <HBox spacing="15" styleClass="password-fields">
+                    <children>
+                        <VBox spacing="8" styleClass="form-field">
+                            <children>
+                                <Label text="Current Password" styleClass="field-label" />
+                                <PasswordField fx:id="currentPasswordField" styleClass="input-field" />
+                            </children>
+                        </VBox>
+                        
+                        <VBox spacing="8" styleClass="form-field">
+                            <children>
+                                <Label text="New Password" styleClass="field-label" />
+                                <PasswordField fx:id="newPasswordField" styleClass="input-field" />
+                            </children>
+                        </VBox>
+                        
+                        <VBox spacing="8" styleClass="form-field">
+                            <children>
+                                <Label text="Confirm New Password" styleClass="field-label" />
+                                <PasswordField fx:id="confirmPasswordField" styleClass="input-field" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                
+                <!-- Rank Selection -->
+                <VBox spacing="8" styleClass="form-field">
+                    <children>
+                        <Label text="Rank Level" styleClass="field-label" />
+                        <ComboBox fx:id="rankComboBox" styleClass="input-field" editable="false" />
+                    </children>
+                </VBox>
+                
+                <!-- Photo Upload -->
+                <HBox spacing="15" alignment="CENTER" styleClass="photo-upload-section">
+                    <children>
+                        <Button fx:id="uploadPhotoButton" text="📷 Upload Photo" styleClass="photo-upload-btn" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        
+        <!-- Statistics Section -->
+        <HBox spacing="30" alignment="CENTER" styleClass="stats-section">
+            <children>
+                <VBox spacing="10" alignment="CENTER" styleClass="stat-card">
+                    <children>
+                        <Label text="Total Wins" styleClass="stat-label" />
+                        <Label fx:id="winsLabel" text="0" styleClass="stat-value" />
+                    </children>
+                </VBox>
+                
+                <VBox spacing="10" alignment="CENTER" styleClass="stat-card">
+                    <children>
+                        <Label text="Total Losses" styleClass="stat-label" />
+                        <Label fx:id="lossesLabel" text="0" styleClass="stat-value" />
+                    </children>
+                </VBox>
+                
+                <VBox spacing="10" alignment="CENTER" styleClass="stat-card">
+                    <children>
+                        <Label text="Win Rate" styleClass="stat-label" />
+                        <Label fx:id="winRateLabel" text="0.0%" styleClass="stat-value" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        
+        <!-- Action Buttons -->
+        <VBox spacing="15" maxWidth="450">
+            <children>
+                <Button fx:id="updateButton" text="💾 Update Profile" styleClass="primary-button" prefWidth="450" />
+                <Button fx:id="cancelButton" text="↩️ Back to Dashboard" styleClass="secondary-button" prefWidth="450" />
+            </children>
+        </VBox>
+        
+        <!-- Status Label -->
+        <Label fx:id="statusLabel" styleClass="status-label" wrapText="true" maxWidth="450" />
+        
+        <!-- Footer -->
+        <Text text="VictoryGrid Gaming Platform" styleClass="footer-text" />
+    </children>
+</VBox>

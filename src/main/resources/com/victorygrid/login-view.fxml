@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.victorygrid.LoginController" 
+      spacing="25" alignment="CENTER" styleClass="root">
+    
+    <children>
+        <!-- Modern Header -->
+        <VBox spacing="15" alignment="CENTER" styleClass="header">
+            <children>
+                <Text text="⚔ VictoryGrid" styleClass="logo"/>
+                <Text text="Gaming Platform" styleClass="tagline"/>
+            </children>
+        </VBox>
+        
+        <!-- Modern Login Card -->
+        <VBox spacing="20" alignment="CENTER" styleClass="login-card">
+            <children>
+                <!-- Login Title -->
+                <Text text="Welcome Back" styleClass="login-title"/>
+                
+                <!-- Login Form -->
+                <VBox spacing="15" maxWidth="350">
+                    <children>
+                        <!-- Email Field with Icon -->
+                        <VBox spacing="8" styleClass="input-group">
+                            <children>
+                                <Text text="📧" styleClass="input-icon"/>
+                                <TextField fx:id="emailField" promptText="Email address" styleClass="input-field"/>
+                            </children>
+                        </VBox>
+                        
+                        <!-- Password Field with Icon -->
+                        <VBox spacing="8" styleClass="input-group">
+                            <children>
+                                <Text text="🔐" styleClass="input-icon"/>
+                                <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field"/>
+                            </children>
+                        </VBox>
+                        
+                        <!-- Remember Me & Forgot Password -->
+                        <HBox spacing="10" alignment="CENTER">
+                            <children>
+                                <CheckBox fx:id="rememberMeCheckBox" text="Remember me" styleClass="checkbox"/>
+                                <Button fx:id="forgotPasswordButton" text="Forgot?" styleClass="link-button"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                
+                <!-- Login Button -->
+                <Button fx:id="loginButton" text="🚀 Sign In" styleClass="primary-button" maxWidth="350"/>
+                
+                <!-- Divider -->
+                <HBox alignment="CENTER" styleClass="divider">
+                    <children>
+                        <Line styleClass="divider-line"/>
+                        <Text text="OR" styleClass="divider-text"/>
+                        <Line styleClass="divider-line"/>
+                    </children>
+                </HBox>
+                
+                <!-- Sign Up Section -->
+                <VBox spacing="15" alignment="CENTER" styleClass="signup-section">
+                    <children>
+                        <Text text="New to VictoryGrid?" styleClass="signup-title"/>
+                        <Button fx:id="signupButton" text="📝 Create Account" styleClass="secondary-button" maxWidth="350"/>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+        
+        <!-- Status Message -->
+        <Label fx:id="statusLabel" styleClass="status-label" wrapText="true" maxWidth="350"/>
+        
+        <!-- Footer -->
+        <VBox spacing="10" alignment="CENTER" styleClass="footer">
+            <children>
+                <Text text=" 2024 VictoryGrid Gaming Platform" styleClass="footer-text"/>
+                <Text text="Version 1.0" styleClass="version-text"/>
+            </children>
+        </VBox>
+    </children>
+</VBox>

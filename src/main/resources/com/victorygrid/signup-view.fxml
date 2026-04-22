@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.victorygrid.SignupController" 
+      spacing="20" alignment="CENTER" styleClass="root">
+    
+    <children>
+        <!-- Title -->
+        <Text text="Create Account" styleClass="title" />
+        
+        <!-- Form Container -->
+        <VBox spacing="15" maxWidth="300">
+            <children>
+                <!-- Username Field -->
+                <VBox spacing="5">
+                    <children>
+                        <Label text="Username" styleClass="field-label" />
+                        <TextField fx:id="usernameField" promptText="Enter username" styleClass="input-field" />
+                    </children>
+                </VBox>
+                
+                <!-- Email Field -->
+                <VBox spacing="5">
+                    <children>
+                        <Label text="Email" styleClass="field-label" />
+                        <TextField fx:id="emailField" promptText="Enter email" styleClass="input-field" />
+                    </children>
+                </VBox>
+                
+                <!-- Password Field -->
+                <VBox spacing="5">
+                    <children>
+                        <Label text="Password" styleClass="field-label" />
+                        <PasswordField fx:id="passwordField" promptText="Enter password" styleClass="input-field" />
+                    </children>
+                </VBox>
+                
+                <!-- Confirm Password Field -->
+                <VBox spacing="5">
+                    <children>
+                        <Label text="Confirm Password" styleClass="field-label" />
+                        <PasswordField fx:id="confirmPasswordField" promptText="Confirm password" styleClass="input-field" />
+                    </children>
+                </VBox>
+                
+                <!-- Role Selection -->
+                <VBox spacing="5">
+                    <children>
+                        <Label text="Account Type" styleClass="field-label" />
+                        <ComboBox fx:id="roleComboBox" styleClass="input-field" prefWidth="300" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+        
+        <!-- Status Label -->
+        <Label fx:id="statusLabel" styleClass="status-label" wrapText="true" maxWidth="300" />
+        
+        <!-- Buttons -->
+        <VBox spacing="10">
+            <children>
+                <Button fx:id="signupButton" text="Sign Up" styleClass="primary-button" prefWidth="300" />
+                <Button fx:id="cancelButton" text="Back to Login" styleClass="secondary-button" prefWidth="300" />
+            </children>
+        </VBox>
+        
+        <!-- Footer -->
+        <Text text="VictoryGrid Gaming Platform" styleClass="subtitle" />
+    </children>
+</VBox>

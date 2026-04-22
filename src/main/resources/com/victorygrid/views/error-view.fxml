@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.victorygrid.controller.ErrorController" 
+      spacing="20" alignment="CENTER" styleClass="error-container">
+    
+    <VBox spacing="15" alignment="CENTER" maxWidth="400">
+        <Text text="Error" styleClass="error-title"/>
+        <Text fx:id="errorMessage" text="An error occurred" styleClass="error-message" wrappingWidth="350"/>
+        <Button fx:id="okButton" text="OK" styleClass="primary-button"/>
+    </VBox>
+    
+</VBox>

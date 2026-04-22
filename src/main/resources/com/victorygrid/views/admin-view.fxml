@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.victorygrid.controller.AdminController" 
+      spacing="20" alignment="TOP_CENTER" styleClass="admin-container">
+    
+    <VBox spacing="15" maxWidth="1200">
+        <Text text="User Management - Admin Panel" styleClass="section-title"/>
+        
+        <!-- Search and Filter Section -->
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField" promptText="Search users..." styleClass="search-field" HBox.hgrow="ALWAYS"/>
+            <ComboBox fx:id="roleFilter" promptText="Filter by Role" styleClass="filter-combo"/>
+            <ComboBox fx:id="rankFilter" promptText="Filter by Rank" styleClass="filter-combo"/>
+            <Button fx:id="searchButton" text="Search" styleClass="primary-button"/>
+            <Button fx:id="clearButton" text="Clear" styleClass="secondary-button"/>
+        </HBox>
+        
+        <!-- User Table -->
+        <TableView fx:id="userTable" styleClass="user-table" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="usernameColumn" text="Username" prefWidth="150"/>
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+                <TableColumn fx:id="roleColumn" text="Role" prefWidth="100"/>
+                <TableColumn fx:id="rankColumn" text="Rank" prefWidth="100"/>
+                <TableColumn fx:id="winsColumn" text="Wins" prefWidth="80"/>
+                <TableColumn fx:id="lossesColumn" text="Losses" prefWidth="80"/>
+                <TableColumn fx:id="winRateColumn" text="Win Rate" prefWidth="80"/>
+                <TableColumn fx:id="activeColumn" text="Active" prefWidth="80"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150"/>
+            </columns>
+        </TableView>
+        
+        <!-- Action Buttons -->
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <Button fx:id="addUserButton" text="Add New User" styleClass="primary-button"/>
+            <Button fx:id="editUserButton" text="Edit Selected" styleClass="secondary-button"/>
+            <Button fx:id="deleteUserButton" text="Delete Selected" styleClass="danger-button"/>
+            <Button fx:id="refreshButton" text="Refresh" styleClass="secondary-button"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userCountLabel" text="Total Users: 0" styleClass="count-label"/>
+        </HBox>
+        
+        <!-- Status Message -->
+        <Label fx:id="statusLabel" text="" styleClass="status-label"/>
+        
+    </VBox>
+    
+    <!-- User Edit Dialog (hidden by default) -->
+    <VBox fx:id="editDialog" visible="false" styleClass="edit-dialog">
+        <StackPane styleClass="dialog-overlay">
+            <VBox styleClass="dialog-content" spacing="20" alignment="CENTER" maxWidth="500">
+                <Text fx:id="dialogTitle" text="Edit User" styleClass="dialog-title"/>
+                
+                <GridPane hgap="15" vgap="10" styleClass="edit-form">
+                    <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <TextField fx:id="editUsername" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <TextField fx:id="editEmail" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="Password:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <PasswordField fx:id="editPassword" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="Role:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <ComboBox fx:id="editRole" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="form-combo"/>
+                    
+                    <Label text="Rank:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <ComboBox fx:id="editRank" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="form-combo"/>
+                    
+                    <Label text="Wins:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <TextField fx:id="editWins" GridPane.rowIndex="5" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="Losses:" GridPane.rowIndex="6" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <TextField fx:id="editLosses" GridPane.rowIndex="6" GridPane.columnIndex="1" styleClass="form-input"/>
+                    
+                    <Label text="Active:" GridPane.rowIndex="7" GridPane.columnIndex="0" styleClass="form-label"/>
+                    <CheckBox fx:id="editActive" GridPane.rowIndex="7" GridPane.columnIndex="1" styleClass="form-checkbox"/>
+                </GridPane>
+                
+                <HBox spacing="15" alignment="CENTER">
+                    <Button fx:id="saveUserButton" text="Save" styleClass="primary-button"/>
+                    <Button fx:id="cancelEditButton" text="Cancel" styleClass="secondary-button"/>
+                </HBox>
+            </VBox>
+        </StackPane>
+    </VBox>
+    
+</VBox>

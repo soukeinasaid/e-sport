@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.victorygrid.controller.AdminController" 
+      spacing="20" alignment="CENTER" styleClass="root">
+    
+    <children>
+        <!-- Title -->
+        <Text text="User Management" styleClass="title" />
+        
+        <!-- Search Bar -->
+        <HBox spacing="10" alignment="CENTER">
+            <children>
+                <TextField fx:id="searchField" promptText="Search users..." styleClass="input-field" prefWidth="300" />
+                <ComboBox fx:id="roleFilter" styleClass="input-field" prefWidth="120" />
+                <ComboBox fx:id="rankFilter" styleClass="input-field" prefWidth="120" />
+                <Button fx:id="searchButton" text="Search" styleClass="primary-button" />
+                <Button fx:id="clearButton" text="Clear" styleClass="secondary-button" />
+            </children>
+        </HBox>
+        
+        <!-- User Count -->
+        <Label fx:id="userCountLabel" text="Total Users: 0" styleClass="subtitle" />
+        
+        <!-- Users Table -->
+        <TableView fx:id="userTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+                <TableColumn fx:id="usernameColumn" text="Username" prefWidth="150" />
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="200" />
+                <TableColumn fx:id="roleColumn" text="Role" prefWidth="100" />
+                <TableColumn fx:id="rankColumn" text="Rank" prefWidth="100" />
+                <TableColumn fx:id="winsColumn" text="Wins" prefWidth="80" />
+                <TableColumn fx:id="lossesColumn" text="Losses" prefWidth="80" />
+                <TableColumn fx:id="winRateColumn" text="Win Rate" prefWidth="100" />
+                <TableColumn fx:id="activeColumn" text="Active" prefWidth="80" />
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150" />
+            </columns>
+        </TableView>
+        
+        <!-- Action Buttons -->
+        <HBox spacing="10" alignment="CENTER">
+            <children>
+                <Button fx:id="addUserButton" text="Add User" styleClass="primary-button" />
+                <Button fx:id="editUserButton" text="Edit User" styleClass="secondary-button" />
+                <Button fx:id="deleteUserButton" text="Delete User" styleClass="danger-button" />
+                <Button fx:id="refreshButton" text="Refresh" styleClass="secondary-button" />
+            </children>
+        </HBox>
+        
+        <!-- Status Label -->
+        <Label fx:id="statusLabel" styleClass="status-label" wrapText="true" maxWidth="600" />
+        
+        <!-- Edit Dialog -->
+        <VBox fx:id="editDialog" visible="false" styleClass="dialog" spacing="20" alignment="CENTER">
+            <children>
+                <Text fx:id="dialogTitle" text="Edit User" styleClass="dialog-title" />
+                
+                <VBox spacing="15" maxWidth="400">
+                    <children>
+                        <Label text="Username" styleClass="field-label" />
+                        <TextField fx:id="editUsername" styleClass="input-field" />
+                        
+                        <Label text="Email" styleClass="field-label" />
+                        <TextField fx:id="editEmail" styleClass="input-field" />
+                        
+                        <Label text="Password" styleClass="field-label" />
+                        <PasswordField fx:id="editPassword" styleClass="input-field" />
+                        
+                        <Label text="Role" styleClass="field-label" />
+                        <ComboBox fx:id="editRole" styleClass="input-field" />
+                        
+                        <Label text="Rank" styleClass="field-label" />
+                        <ComboBox fx:id="editRank" styleClass="input-field" />
+                        
+                        <Label text="Wins" styleClass="field-label" />
+                        <TextField fx:id="editWins" styleClass="input-field" />
+                        
+                        <Label text="Losses" styleClass="field-label" />
+                        <TextField fx:id="editLosses" styleClass="input-field" />
+                        
+                        <Label text="Active" styleClass="field-label" />
+                        <CheckBox fx:id="editActive" text="Active" />
+                    </children>
+                </VBox>
+                
+                <HBox spacing="10" alignment="CENTER">
+                    <children>
+                        <Button fx:id="saveButton" text="Save" styleClass="primary-button" />
+                        <Button fx:id="cancelButton" text="Cancel" styleClass="secondary-button" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</VBox>
