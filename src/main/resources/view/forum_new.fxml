@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.ForumController"
+      spacing="20"
+      alignment="TOP_CENTER"
+      styleClass="forum-root">
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <!-- HEADER -->
+    <VBox spacing="6" alignment="CENTER_LEFT">
+        <Label text="💬 Forum" styleClass="forum-title"/>
+        <Label text="Create and share a new discussion"
+               styleClass="forum-description"/>
+    </VBox>
+
+    <!-- SEARCH AND FILTER SECTION -->
+    <VBox spacing="12" styleClass="forum-card">
+        <Label text="Search &amp; Filter" styleClass="section-title"/>
+        
+        <!-- SEARCH BAR -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField"
+                      promptText="Search posts by title..."
+                      styleClass="forum-input"
+                      HBox.hgrow="ALWAYS"/>
+            <Button fx:id="searchBtn"
+                    text="🔍"
+                    styleClass="search-button"
+                    onAction="#handleSearch"/>
+        </HBox>
+        
+        <!-- FILTER BUTTONS -->
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Button fx:id="recentBtn"
+                    text="📅 Recent"
+                    styleClass="filter-button"
+                    onAction="#handleRecent"/>
+            <Button fx:id="oldestBtn"
+                    text="📜 Oldest"
+                    styleClass="filter-button"
+                    onAction="#handleOldest"/>
+            <Button fx:id="allBtn"
+                    text="📋 All"
+                    styleClass="filter-button active"
+                    onAction="#handleAll"/>
+        </HBox>
+    </VBox>
+
+    <!-- CREATE POST SECTION -->
+    <VBox spacing="12" styleClass="forum-card">
+
+        <Label text="Add New Post" styleClass="section-title"/>
+
+        <!-- TITLE -->
+        <TextField fx:id="titleField"
+                   promptText="Enter post title..."
+                   styleClass="forum-input"/>
+
+        <!-- DESCRIPTION -->
+        <TextArea fx:id="contentArea"
+                  promptText="Write your description..."
+                  prefRowCount="5"
+                  wrapText="true"
+                  styleClass="forum-textarea"/>
+
+        <!-- BUTTON -->
+        <Button fx:id="publishBtn"
+                text="Publish"
+                styleClass="forum-button"
+                onAction="#handleAdd"/>
+
+    </VBox>
+
+    <!-- POSTS LIST -->
+    <VBox spacing="12" styleClass="forum-card">
+
+        <Label text="Recent Posts" styleClass="section-title"/>
+
+        <!-- POSTS CONTAINER -->
+        <VBox fx:id="postsContainer" 
+              spacing="10"
+              styleClass="posts-container"/>
+
+        <!-- PAGINATION CONTAINER -->
+        <HBox fx:id="paginationContainer" 
+              alignment="CENTER"
+              spacing="8"
+              styleClass="pagination-container"/>
+
+    </VBox>
+
+</VBox>
