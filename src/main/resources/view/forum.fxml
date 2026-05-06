@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ForumController"
+            styleClass="forum-scroll-pane"
+            fitToWidth="true"
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="20"
+          alignment="TOP_CENTER"
+          styleClass="forum-root">
+
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
+
+    <!-- HEADER -->
+    <VBox spacing="6" alignment="CENTER_LEFT">
+        <Label text="💬 Forum" styleClass="forum-title"/>
+        <Label text="Create and share a new discussion"
+               styleClass="forum-description"/>
+    </VBox>
+
+    <!-- SEARCH AND FILTER SECTION -->
+    <VBox spacing="12" styleClass="forum-card">
+        <Label text="Search &amp; Filter" styleClass="section-title"/>
+        
+        <!-- SEARCH BAR -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField"
+                      promptText="Search posts by title..."
+                      styleClass="forum-input"
+                      HBox.hgrow="ALWAYS"/>
+            <Button fx:id="searchBtn"
+                    text="🔍"
+                    styleClass="search-button"
+                    onAction="#handleSearch"/>
+        </HBox>
+        
+        <!-- PUBLISH BUTTON -->
+        <HBox alignment="CENTER_RIGHT">
+            <Button fx:id="publishBtn"
+                    text="Publish"
+                    styleClass="forum-button"
+                    onAction="#handlePublish"/>
+        </HBox>
+        
+        <!-- FILTER BUTTONS -->
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Button fx:id="recentBtn"
+                    text="📅 Recent"
+                    styleClass="filter-button"
+                    onAction="#handleRecent"/>
+            <Button fx:id="oldestBtn"
+                    text="📜 Oldest"
+                    styleClass="filter-button"
+                    onAction="#handleOldest"/>
+            <Button fx:id="allBtn"
+                    text="📋 All"
+                    styleClass="filter-button active"
+                    onAction="#handleAll"/>
+            <Button fx:id="favoritesBtn"
+                    text="❤️ Favorites"
+                    styleClass="filter-button"
+                    onAction="#handleFavorites"/>
+        </HBox>
+    </VBox>
+
+    <!-- CREATE POST SECTION -->
+    <VBox spacing="12" styleClass="forum-card">
+
+        <Label text="Add New Post" styleClass="section-title"/>
+
+        <!-- TITLE -->
+        <TextField fx:id="titleField"
+                   promptText="Enter post title..."
+                   styleClass="forum-input"/>
+
+        <!-- DESCRIPTION -->
+        <TextArea fx:id="contentArea"
+                  promptText="Write your description..."
+                  prefRowCount="5"
+                  wrapText="true"
+                  styleClass="forum-textarea"/>
+
+        <!-- BUTTON -->
+        <Button fx:id="publishBtn"
+                text="Publish"
+                styleClass="forum-button"
+                onAction="#handlePublish"/>
+
+    </VBox>
+
+    <!-- POSTS LIST -->
+    <VBox spacing="12" styleClass="forum-card">
+
+        <Label text="Recent Posts" styleClass="section-title"/>
+
+        <!-- POSTS CONTAINER -->
+        <VBox fx:id="postsContainer" 
+              spacing="10"
+              styleClass="posts-container"/>
+
+    </VBox>
+
+    <!-- PAGINATION SECTION - ALWAYS VISIBLE -->
+    <VBox spacing="15" alignment="CENTER" styleClass="forum-card pagination-section">
+        
+        <Label text="Forum Navigation" styleClass="section-title"/>
+        
+        <!-- PAGE INFORMATION -->
+        <HBox alignment="CENTER" spacing="15" styleClass="page-info-container">
+            <Label fx:id="pageInfoLabel" 
+                   text="Page 1 of 1" 
+                   styleClass="page-info-label"/>
+            <Label fx:id="totalPostsLabel" 
+                   text="Showing 0 posts" 
+                   styleClass="total-posts-label"/>
+        </HBox>
+        
+        <!-- PAGINATION CONTROLS -->
+        <HBox fx:id="paginationContainer" 
+              alignment="CENTER"
+              spacing="8"
+              styleClass="pagination-container"/>
+        
+        <!-- DIRECT PAGE NAVIGATION -->
+        <HBox alignment="CENTER" spacing="10" styleClass="direct-nav-container">
+            <Label text="Go to page:" styleClass="go-to-label"/>
+            <TextField fx:id="pageInputField" 
+                      prefWidth="60"
+                      promptText="1"
+                      styleClass="page-input-field"/>
+            <Button fx:id="goToPageBtn" 
+                    text="Go" 
+                    styleClass="go-to-button"
+                    onAction="#handleGoToPage"/>
+        </HBox>
+        
+    </VBox>
+
+    </VBox>
+
+</ScrollPane>

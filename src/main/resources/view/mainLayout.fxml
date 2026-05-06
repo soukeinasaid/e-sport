@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.MainLayoutController"
+            prefWidth="1100.0"
+            prefHeight="700.0"
+            styleClass="app-root">
+
+    <!-- ================= SIDEBAR ================= -->
+    <left>
+        <VBox prefWidth="240.0" styleClass="sidebar">
+
+            <!-- HEADER -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="sidebar-header">
+                <Label text="VictoryGrid" styleClass="logo-text"/>
+            </HBox>
+
+            <Separator/>
+
+            <!-- MENU -->
+            <VBox fx:id="menuContainer" spacing="8.0" styleClass="menu-container">
+
+                <Button text="🏠  Home" styleClass="menu-item" onAction="#loadHome"/>
+                <Button text="📊  Dashboard" styleClass="menu-item" onAction="#loadDashboard"/>
+                <Button text="🏆  Tournaments" styleClass="menu-item" onAction="#loadTournaments"/>
+                <Button text="👥  Store" styleClass="menu-item" onAction="#loadTeams"/>
+                <Button text="⚔  Matches" styleClass="menu-item" onAction="#loadMatches"/>
+                <Button text="📈  Planning" styleClass="menu-item" onAction="#loadStats"/>
+                <Button text="💬  Forum" styleClass="menu-item" onAction="#loadForum"/>
+                <Button text="👤  Profile" styleClass="menu-item" onAction="#loadProfile"/>
+
+            </VBox>
+
+            <!-- PUSH CONTENT DOWN -->
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- LOGOUT -->
+            <Separator/>
+
+            <HBox alignment="CENTER" styleClass="logout-container">
+                <Button text="⏻  Logout"
+                        styleClass="logout-button"
+                        onAction="#handleLogout"
+                        maxWidth="Infinity"/>
+            </HBox>
+
+        </VBox>
+    </left>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="main-content">
+
+            <!-- Background glow -->
+            <Pane styleClass="background-glow"/>
+
+            <!-- Default content -->
+            <Label text="VictoryGrid" styleClass="logo-text"/>
+
+        </StackPane>
+    </center>
+
+</BorderPane>

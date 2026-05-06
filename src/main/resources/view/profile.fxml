@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.ProfileController"
+      spacing="20"
+      alignment="CENTER"
+      styleClass="forum-root">
+
+    <VBox styleClass="forum-card" spacing="12" maxWidth="400">
+
+        <Label text="👤 Profile" styleClass="forum-title"/>
+
+        <Label text="Votre Nom :" styleClass="field-label"/>
+        <TextField fx:id="nomField" promptText="Nom" styleClass="forum-input"/>
+        <Label text="Votre Prenom :" styleClass="field-label"/>
+        <TextField fx:id="prenomField" promptText="Prenom" styleClass="forum-input"/>
+        <Label text="Votre Email :" styleClass="field-label"/>
+        <TextField fx:id="emailField" promptText="Email" styleClass="forum-input"/>
+
+        <Label text=" votre password :" styleClass="field-label"/>
+        <PasswordField fx:id="passwordField" promptText="Mot de passe" styleClass="forum-input"/>
+
+        <Button text="Update Profile"
+                onAction="#handleUpdate"
+                styleClass="forum-button"/>
+
+    </VBox>
+
+</VBox>
