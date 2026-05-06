@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.UserManagementController"
+            styleClass="forum-scroll-pane"
+            fitToWidth="true"
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="20"
+          alignment="TOP_CENTER"
+          styleClass="forum-root"
+          prefHeight="800.0"
+          minHeight="600.0">
+
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
+
+    <!-- HEADER -->
+    <VBox spacing="6" alignment="CENTER_LEFT">
+        <Label text="🛡️ Admin Panel" styleClass="forum-title"/>
+        <Label text="Manage users and their roles"
+               styleClass="forum-description"/>
+    </VBox>
+
+    <!-- SEARCH AND FILTER SECTION -->
+    <VBox spacing="12" styleClass="forum-card">
+        <Label text="Search &amp; Filter" styleClass="section-title"/>
+        
+        <!-- SEARCH BAR -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField"
+                      promptText="Search users by name or email..."
+                      styleClass="forum-input"
+                      HBox.hgrow="ALWAYS"/>
+            <Button fx:id="searchBtn"
+                    text="🔍"
+                    styleClass="search-button"
+                    onAction="#handleSearch"/>
+        </HBox>
+        
+        <!-- FILTER BUTTONS -->
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Button fx:id="allUsersBtn"
+                    text="📋 All Users"
+                    styleClass="filter-button active"
+                    onAction="#handleAllUsers"/>
+            <Button fx:id="adminUsersBtn"
+                    text="🛡️ Admins"
+                    styleClass="filter-button"
+                    onAction="#handleAdminUsers"/>
+            <Button fx:id="normalUsersBtn"
+                    text="👤 Users"
+                    styleClass="filter-button"
+                    onAction="#handleNormalUsers"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="addUserButton"
+                    text="➕ Add User"
+                    styleClass="forum-button"
+                    onAction="#showAddUserForm"/>
+        </HBox>
+    </VBox>
+
+    <!-- ADD USER SECTION (Initially Hidden) -->
+    <VBox fx:id="addUserForm" 
+          spacing="12" 
+          styleClass="forum-card"
+          visible="false"
+          managed="false">
+
+        <Label text="Add New User" styleClass="section-title"/>
+
+        <!-- FIRST NAME -->
+        <VBox spacing="4">
+            <Label text="First Name" styleClass="field-label"/>
+            <TextField fx:id="newUserFirstNameField" 
+                      promptText="Enter first name"
+                      styleClass="forum-input"/>
+        </VBox>
+
+        <!-- LAST NAME -->
+        <VBox spacing="4">
+            <Label text="Last Name" styleClass="field-label"/>
+            <TextField fx:id="newUserNameField" 
+                      promptText="Enter last name"
+                      styleClass="forum-input"/>
+        </VBox>
+
+        <!-- EMAIL -->
+        <VBox spacing="4">
+            <Label text="Email" styleClass="field-label"/>
+            <TextField fx:id="newUserEmailField" 
+                      promptText="Enter email address"
+                      styleClass="forum-input"/>
+        </VBox>
+
+        <!-- PASSWORD -->
+        <VBox spacing="4">
+            <Label text="Password" styleClass="field-label"/>
+            <PasswordField fx:id="newUserPasswordField" 
+                           promptText="Enter password"
+                           styleClass="forum-input"/>
+        </VBox>
+
+        <!-- ROLE -->
+        <VBox spacing="4">
+            <Label text="Role" styleClass="field-label"/>
+            <ComboBox fx:id="newUserRoleComboBox" 
+                      styleClass="forum-input"
+                      promptText="Select role"/>
+        </VBox>
+        
+        <!-- ACTION BUTTONS -->
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button fx:id="cancelAddUserButton" 
+                    text="Cancel" 
+                    styleClass="forum-button-secondary"
+                    onAction="#hideAddUserForm"/>
+            <Button fx:id="saveUserButton" 
+                    text="Save User" 
+                    styleClass="forum-button"
+                    onAction="#saveNewUser"/>
+        </HBox>
+    </VBox>
+
+    <!-- USERS LIST -->
+    <VBox styleClass="forum-card" VBox.vgrow="ALWAYS">
+        <Label text="All Users" styleClass="section-title"/>
+        
+        <TableView fx:id="userTableView" 
+                   styleClass="user-table"
+                   VBox.vgrow="ALWAYS"
+                   prefHeight="400.0"
+                   minHeight="300.0">
+            
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="60.0"/>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="200.0"/>
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="250.0"/>
+                <TableColumn fx:id="roleColumn" text="Role" prefWidth="100.0"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="180.0"/>
+            </columns>
+            
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+
+    <!-- FOOTER ACTIONS -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="refreshButton" 
+                text="🔄 Refresh" 
+                styleClass="forum-button-secondary"
+                onAction="#refreshUsers"/>
+        <Button text="🏠 Back to Main" 
+                styleClass="forum-button-secondary"
+                onAction="#handleBackToMain"/>
+        <Button text="⏻ Logout" 
+                styleClass="forum-button"
+                onAction="#handleLogout"/>
+    </HBox>
+
+    </VBox>
+</ScrollPane>

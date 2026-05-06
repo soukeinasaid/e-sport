@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.AIGeneratorController"
+            styleClass="forum-scroll-pane"
+            fitToWidth="true"
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="20"
+          alignment="TOP_CENTER"
+          styleClass="forum-root">
+
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
+
+        <!-- HEADER -->
+        <VBox spacing="6" alignment="CENTER_LEFT">
+            <Label text="🤖 AI Content Generator" styleClass="forum-title"/>
+            <Label text="Generate intelligent content for your forum posts"
+                   styleClass="forum-description"/>
+        </VBox>
+
+        <!-- GENERATION CONTROLS -->
+        <VBox spacing="12" styleClass="forum-card">
+
+            <Label text="Content Generation" styleClass="section-title"/>
+
+            <!-- TOPIC INPUT -->
+            <TextField fx:id="topicField"
+                      promptText="Enter topic (e.g., 'e-sports trends', 'community guidelines')..."
+                      styleClass="forum-input"/>
+
+            <!-- TITLE INPUT -->
+            <TextField fx:id="titleField"
+                      promptText="Or enter a specific title..."
+                      styleClass="forum-input"/>
+
+            <!-- GENERATE BUTTON -->
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Button fx:id="generateBtn"
+                        text="🚀 Generate Content"
+                        styleClass="forum-button"
+                        onAction="#handleGenerate"/>
+            </HBox>
+
+        </VBox>
+
+        <!-- GENERATED CONTENT DISPLAY -->
+        <VBox spacing="12" styleClass="forum-card">
+
+            <Label text="Generated Content" styleClass="section-title"/>
+
+            <!-- STATUS LABEL -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="statusLabel" 
+                       text="Ready to generate AI content!" 
+                       styleClass="status-label"/>
+            </HBox>
+
+            <!-- CONTENT DISPLAY AREA -->
+            <VBox fx:id="generatedContentContainer" 
+                  spacing="15"
+                  styleClass="generated-content-container"/>
+
+            <!-- ACTION BUTTONS -->
+            <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="action-buttons-container">
+                <Button fx:id="copyBtn"
+                        text="📋 Copy Content"
+                        styleClass="secondary-button"
+                        onAction="#handleCopy"/>
+                <Button fx:id="useBtn"
+                        text="✅ Use in Forum"
+                        styleClass="forum-button"
+                        onAction="#handleUse"/>
+            </HBox>
+
+        </VBox>
+
+        <!-- NAVIGATION -->
+        <VBox spacing="12" styleClass="forum-card">
+
+            <Label text="Navigation" styleClass="section-title"/>
+
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Button fx:id="backBtn"
+                        text="← Back to Forum"
+                        styleClass="filter-button"
+                        onAction="#handleBack"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+</ScrollPane>
