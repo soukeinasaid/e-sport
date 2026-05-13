@@ -1,0 +1,480 @@
+/* ══════════════════════════════════════════════════════════
+   FRONT OFFICE — Vibrant Card Theme
+   src/main/resources/frontoffice.css
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Root ── */
+.fo-root {
+    -fx-font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+    -fx-background-color: #0E1117;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SIDEBAR
+   ══════════════════════════════════════════════════════════ */
+.fo-sidebar {
+    -fx-background-color: #13151E;
+    -fx-border-color: rgba(255,255,255,0.06);
+    -fx-border-width: 0 1 0 0;
+}
+
+.fo-sidebar-logo {
+    -fx-padding: 30 20 24 20;
+    -fx-background-color: linear-gradient(to bottom, #1A1D2E, #13151E);
+    -fx-border-color: rgba(255,255,255,0.05);
+    -fx-border-width: 0 0 1 0;
+}
+
+.fo-logo-icon {
+    -fx-font-size: 36px;
+    -fx-text-fill: #FFD700;
+    -fx-effect: dropshadow(gaussian, rgba(255,215,0,0.8), 20, 0.6, 0, 0);
+}
+
+.fo-logo-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+    -fx-letter-spacing: 4px;
+}
+
+.fo-logo-sub {
+    -fx-text-fill: #5A6480;
+    -fx-font-size: 9px;
+    -fx-letter-spacing: 2px;
+}
+
+.fo-sep {
+    -fx-background-color: rgba(255,255,255,0.06);
+}
+
+.fo-nav {
+    -fx-padding: 20 12 12 12;
+}
+
+.fo-nav-label {
+    -fx-text-fill: #3A4155;
+    -fx-font-size: 9px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 2px;
+    -fx-padding: 0 4 10 4;
+}
+
+.fo-nav-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8A93A5;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 16;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+.fo-nav-item:hover {
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-text-fill: #FFFFFF;
+}
+.fo-nav-active {
+    -fx-background-color: rgba(255,215,0,0.1) !important;
+    -fx-text-fill: #FFD700 !important;
+    -fx-border-color: rgba(255,215,0,0.25) !important;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+}
+
+.fo-user-box {
+    -fx-padding: 16 16 20 16;
+}
+
+.fo-avatar {
+    -fx-background-color: linear-gradient(to bottom right, #FF6B35, #FF8C69);
+    -fx-background-radius: 50;
+    -fx-min-width: 42;
+    -fx-min-height: 42;
+    -fx-max-width: 42;
+    -fx-max-height: 42;
+    -fx-effect: dropshadow(gaussian, rgba(255,107,53,0.5), 10, 0.4, 0, 0);
+}
+.fo-avatar-text {
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-font-size: 16px;
+}
+.fo-user-name {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+.fo-user-status {
+    -fx-text-fill: #00FFD1;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+}
+
+.fo-logout {
+    -fx-background-color: rgba(255,92,92,0.12);
+    -fx-text-fill: #FF6B6B;
+    -fx-font-weight: 700;
+    -fx-font-size: 12px;
+    -fx-background-radius: 10;
+    -fx-padding: 10 14;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(255,92,92,0.2);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+}
+.fo-logout:hover {
+    -fx-background-color: #FF5C5C;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MAIN AREA
+   ══════════════════════════════════════════════════════════ */
+.fo-main {
+    -fx-background-color: #0E1117;
+}
+
+/* Hero bar */
+.fo-hero {
+    -fx-background-color: linear-gradient(to right, #13151E 0%, #1A1D2E 60%, #0E1117 100%);
+    -fx-padding: 24 28 20 28;
+    -fx-border-color: rgba(255,255,255,0.05);
+    -fx-border-width: 0 0 1 0;
+}
+
+.fo-hero-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+
+.fo-hero-sub {
+    -fx-text-fill: #8A93A5;
+    -fx-font-size: 12px;
+}
+
+.fo-status-pill {
+    -fx-text-fill: #00FFD1;
+    -fx-background-color: rgba(0,255,209,0.1);
+    -fx-border-color: rgba(0,255,209,0.3);
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 6 16;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+/* Stat chips */
+.fo-stat-chip {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-padding: 10 20;
+    -fx-min-width: 80;
+}
+.fo-stat-num {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+.fo-stat-num-green {
+    -fx-text-fill: #00FFB4;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+.fo-stat-num-blue {
+    -fx-text-fill: #6FA3FF;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+.fo-stat-label {
+    -fx-text-fill: #5A6480;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+    -fx-letter-spacing: 1px;
+}
+
+/* Search box */
+.fo-search-box {
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(255,255,255,0.1);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-padding: 6 14;
+}
+.fo-search-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #FFFFFF;
+    -fx-prompt-text-fill: #5A6480;
+    -fx-font-size: 13px;
+    -fx-padding: 0;
+}
+.fo-search-field:focused {
+    -fx-border-color: transparent;
+}
+
+/* Filter combo */
+.fo-filter-combo {
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(255,255,255,0.1);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-padding: 4 6;
+}
+.fo-filter-combo .list-cell {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: transparent;
+    -fx-font-size: 12px;
+}
+.fo-filter-combo .arrow-button { -fx-background-color: transparent; }
+.fo-filter-combo .arrow         { -fx-background-color: #8A93A5; }
+
+/* ── ComboBox dropdown popup (applies to ALL ComboBoxes in this scene) ── */
+.combo-box-popup > .list-view {
+    -fx-background-color: #1A1D2E;
+    -fx-border-color: rgba(255,255,255,0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 16, 0.3, 0, 6);
+}
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-background-color: #1A1D2E;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-padding: 9 14;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:hover {
+    -fx-background-color: rgba(89,126,232,0.2);
+    -fx-text-fill: #FFFFFF;
+}
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:selected,
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
+    -fx-background-color: rgba(89,126,232,0.4);
+    -fx-text-fill: #FFFFFF;
+}
+
+
+/* ScrollPane */
+.fo-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+}
+.fo-scroll .viewport {
+    -fx-background-color: transparent;
+}
+.fo-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 6;
+}
+.fo-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 3;
+}
+.fo-scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(255,215,0,0.4);
+}
+.fo-scroll .scroll-bar .increment-button,
+.fo-scroll .scroll-bar .decrement-button {
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-background-color: transparent;
+}
+
+/* Cards pane */
+.fo-cards-pane {
+    -fx-padding: 24 24 24 24;
+    -fx-background-color: transparent;
+}
+
+/* ══════════════════════════════════════════════════════════
+   TOURNAMENT CARD
+   ══════════════════════════════════════════════════════════ */
+.fo-card {
+    -fx-background-color: #181C28;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: rgba(255,255,255,0.07);
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 20, 0.3, 0, 6);
+    -fx-cursor: hand;
+    -fx-pref-width: 340;
+    -fx-max-width: 340;
+}
+.fo-card:hover {
+    -fx-border-color: rgba(255,215,0,0.35);
+    -fx-effect: dropshadow(gaussian, rgba(255,215,0,0.2), 30, 0.3, 0, 8);
+    -fx-translate-y: -3;
+}
+
+/* Card top banner (colored per game) */
+.fo-card-banner {
+    -fx-background-radius: 20 20 0 0;
+    -fx-padding: 18 20 16 20;
+    -fx-min-height: 90;
+}
+.fo-card-banner-1 { -fx-background-color: linear-gradient(to right, #FF6B35, #FF8C69); }
+.fo-card-banner-2 { -fx-background-color: linear-gradient(to right, #7B2FBE, #A855F7); }
+.fo-card-banner-3 { -fx-background-color: linear-gradient(to right, #0EA5E9, #38BDF8); }
+.fo-card-banner-4 { -fx-background-color: linear-gradient(to right, #10B981, #34D399); }
+.fo-card-banner-5 { -fx-background-color: linear-gradient(to right, #F59E0B, #FCD34D); }
+.fo-card-banner-6 { -fx-background-color: linear-gradient(to right, #EF4444, #F87171); }
+
+.fo-card-game-badge {
+    -fx-background-color: rgba(0,0,0,0.25);
+    -fx-background-radius: 20;
+    -fx-padding: 4 12;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 1px;
+}
+
+.fo-card-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 17px;
+    -fx-font-weight: 900;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 4, 0.3, 0, 1);
+}
+
+/* Card body */
+.fo-card-body {
+    -fx-padding: 16 20 18 20;
+    -fx-spacing: 10;
+}
+
+.fo-card-info-row {
+    -fx-spacing: 8;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.fo-card-info-icon {
+    -fx-text-fill: #8A93A5;
+    -fx-font-size: 12px;
+    -fx-min-width: 16;
+}
+
+.fo-card-info-text {
+    -fx-text-fill: #BFC7D5;
+    -fx-font-size: 12px;
+}
+
+/* Prize badge */
+.fo-card-prize {
+    -fx-background-color: rgba(255,215,0,0.12);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(255,215,0,0.3);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 8 14;
+    -fx-text-fill: #FFD700;
+    -fx-font-size: 15px;
+    -fx-font-weight: 900;
+}
+
+/* Teams badge */
+.fo-card-teams {
+    -fx-background-color: rgba(89,126,232,0.12);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(89,126,232,0.3);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 8 14;
+    -fx-text-fill: #6FA3FF;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+/* Status indicator */
+.fo-status-active {
+    -fx-background-color: rgba(0,255,180,0.12);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(0,255,180,0.3);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-text-fill: #00FFB4;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-padding: 3 10;
+}
+.fo-status-upcoming {
+    -fx-background-color: rgba(111,163,255,0.12);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(111,163,255,0.3);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-text-fill: #6FA3FF;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-padding: 3 10;
+}
+.fo-status-finished {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(255,255,255,0.1);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-text-fill: #5A6480;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-padding: 3 10;
+}
+
+/* Card divider */
+.fo-card-divider {
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-padding: 0;
+}
+
+/* Card footer */
+.fo-card-footer {
+    -fx-padding: 12 20 16 20;
+    -fx-alignment: CENTER;
+}
+
+.fo-btn-details {
+    -fx-background-color: linear-gradient(to right, #4F6FDB, #6FA3FF);
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-font-size: 12px;
+    -fx-background-radius: 12;
+    -fx-padding: 10 0;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(89,126,232,0.4), 10, 0.4, 0, 3);
+}
+.fo-btn-details:hover {
+    -fx-background-color: linear-gradient(to right, #5A7FFF, #93C5FD);
+    -fx-effect: dropshadow(gaussian, rgba(111,163,255,0.6), 16, 0.5, 0, 5);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+.fo-btn-details:pressed {
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+/* ══════════════════════════════════════════════════════════
+   EMPTY STATE
+   ══════════════════════════════════════════════════════════ */
+.fo-empty {
+    -fx-alignment: CENTER;
+    -fx-spacing: 16;
+    -fx-padding: 80 0 0 0;
+}
+.fo-empty-icon  { -fx-font-size: 64px; -fx-text-fill: #2A2F3F; }
+.fo-empty-title { -fx-text-fill: #5A6480; -fx-font-size: 16px; -fx-font-weight: 700; }
+.fo-empty-sub   { -fx-text-fill: #3A4155; -fx-font-size: 12px; }

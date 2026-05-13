@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:id="rootStack"
+           fx:controller="org.example.controllers.LoginController"
+           stylesheets="@login.css"
+           styleClass="login-root"
+           prefWidth="920" prefHeight="600">
+
+    <!-- ══════════ SPLIT LAYOUT ══════════ -->
+    <HBox>
+
+        <!-- ── LEFT BRAND PANEL ── -->
+        <VBox styleClass="brand-panel" alignment="CENTER" spacing="24" HBox.hgrow="ALWAYS">
+
+            <Label text="⚔" styleClass="brand-icon"/>
+            <VBox alignment="CENTER" spacing="8">
+                <Label text="TournoiManager" styleClass="brand-title"/>
+                <Label text="Plateforme e-sport de gestion de tournois"
+                       styleClass="brand-subtitle" wrapText="true" textAlignment="CENTER"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="14" style="-fx-padding: 20 0 0 0;">
+                <VBox alignment="CENTER" spacing="4" styleClass="stat-box">
+                    <Label text="500+" styleClass="stat-number"/>
+                    <Label text="Tournois" styleClass="stat-label"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="4" styleClass="stat-box">
+                    <Label text="12K+" styleClass="stat-number"/>
+                    <Label text="Joueurs" styleClass="stat-label"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="4" styleClass="stat-box">
+                    <Label text="80+" styleClass="stat-number"/>
+                    <Label text="Centres" styleClass="stat-label"/>
+                </VBox>
+            </HBox>
+
+        </VBox>
+
+        <!-- ── RIGHT AUTH PANEL ── -->
+        <VBox styleClass="auth-panel" alignment="CENTER" prefWidth="420">
+
+            <!-- Toggle tabs -->
+            <HBox styleClass="auth-tabs" alignment="CENTER">
+                <Button fx:id="btnTabLogin"    text="Connexion"   styleClass="tab-btn, tab-active"  onAction="#showLogin"    maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnTabRegister" text="Inscription" styleClass="tab-btn"              onAction="#showRegister" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <!-- ═══ LOGIN PANE ═══ -->
+            <VBox fx:id="paneLogin" styleClass="form-pane" spacing="16" visible="true" managed="true">
+
+                <Label text="Bon retour ! 👋" styleClass="form-title"/>
+                <Label text="Connectez-vous à votre compte" styleClass="form-subtitle"/>
+
+                <VBox spacing="6">
+                    <Label text="NOM D'UTILISATEUR" styleClass="input-label"/>
+                    <TextField fx:id="tfLoginUsername"
+                               promptText="Entrez votre nom d'utilisateur"
+                               styleClass="auth-input"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="MOT DE PASSE" styleClass="input-label"/>
+                    <PasswordField fx:id="pfLoginPassword"
+                                  promptText="••••••••"
+                                  styleClass="auth-input"/>
+                </VBox>
+
+                <Label fx:id="lblLoginError" styleClass="error-label" wrapText="true"/>
+
+                <Button fx:id="btnLogin"
+                        text="SE CONNECTER  →"
+                        onAction="#handleLogin"
+                        styleClass="auth-button"
+                        maxWidth="Infinity"/>
+
+                <HBox alignment="CENTER" spacing="6">
+                    <Label text="Pas encore de compte ?" styleClass="hint-label"/>
+                    <Button text="Créer un compte" styleClass="link-btn" onAction="#showRegister"/>
+                </HBox>
+
+            </VBox>
+
+            <!-- ═══ REGISTER PANE ═══ -->
+            <VBox fx:id="paneRegister" styleClass="form-pane" spacing="14" visible="false" managed="false">
+
+                <Label text="Créer un compte 🎮" styleClass="form-title"/>
+                <Label text="Rejoignez la communauté e-sport" styleClass="form-subtitle"/>
+
+                <VBox spacing="6">
+                    <Label text="NOM D'UTILISATEUR" styleClass="input-label"/>
+                    <TextField fx:id="tfRegUsername"
+                               promptText="Choisissez un pseudo"
+                               styleClass="auth-input"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="EMAIL" styleClass="input-label"/>
+                    <TextField fx:id="tfRegEmail"
+                               promptText="votre@email.com"
+                               styleClass="auth-input"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="MOT DE PASSE" styleClass="input-label"/>
+                    <PasswordField fx:id="pfRegPassword"
+                                  promptText="Minimum 6 caractères"
+                                  styleClass="auth-input"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="CONFIRMER" styleClass="input-label"/>
+                    <PasswordField fx:id="pfRegConfirm"
+                                  promptText="Répétez le mot de passe"
+                                  styleClass="auth-input"/>
+                </VBox>
+
+                <Label fx:id="lblRegError" styleClass="error-label" wrapText="true"/>
+
+                <Button fx:id="btnRegister"
+                        text="CRÉER MON COMPTE  →"
+                        onAction="#handleRegister"
+                        styleClass="auth-button"
+                        maxWidth="Infinity"/>
+
+                <HBox alignment="CENTER" spacing="6">
+                    <Label text="Déjà un compte ?" styleClass="hint-label"/>
+                    <Button text="Se connecter" styleClass="link-btn" onAction="#showLogin"/>
+                </HBox>
+
+            </VBox>
+
+        </VBox>
+    </HBox>
+
+</StackPane>
