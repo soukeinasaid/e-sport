@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.CentreController"
+            stylesheets="/css/tournoi.css"
+            styleClass="app-root"
+            prefWidth="1260" prefHeight="780">
+
+    <!-- ═══════════════════════ LEFT SIDEBAR ═══════════════════════ -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="240" spacing="0">
+
+            <HBox styleClass="sidebar-header" alignment="CENTER_LEFT" spacing="10">
+                <Label text="🏢" styleClass="logo-icon"/>
+                <VBox spacing="1">
+                    <Label text="CentreManager" styleClass="logo-text"/>
+                    <Label text="Back Office"   styleClass="logo-sub"
+                           style="-fx-font-size:10px;-fx-text-fill:#3A4155;-fx-font-weight:700;"/>
+                </VBox>
+            </HBox>
+
+            <Separator styleClass="sidebar-sep"/>
+
+            <VBox styleClass="menu-container" spacing="4" VBox.vgrow="ALWAYS">
+                <Label text="NAVIGATION" styleClass="nav-section-label"/>
+                <Button text="🏢  Centres"      styleClass="menu-item, active" maxWidth="Infinity"/>
+                <Button text="🏆  Tournois"      styleClass="menu-item"        maxWidth="Infinity"
+                        onAction="#handleNavTournois"/>
+                <Label text="OUTILS" styleClass="nav-section-label"
+                       style="-fx-padding: 10 8 4 8;"/>
+                <Button text="📊  Statistiques"  styleClass="menu-item" maxWidth="Infinity"/>
+                <Button text="⚙  Paramètres"    styleClass="menu-item" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox styleClass="user-box" spacing="10">
+                <Separator styleClass="sidebar-sep"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <StackPane styleClass="avatar" minWidth="38" minHeight="38">
+                        <Label text="A" styleClass="avatar-text"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label text="Admin"          styleClass="username"/>
+                        <Label text="⚡ Super Admin" styleClass="user-rank"/>
+                    </VBox>
+                </HBox>
+                <Button text="⏻  Déconnexion" onAction="#handleLogout"
+                        styleClass="logout-button" maxWidth="Infinity"/>
+            </VBox>
+
+        </VBox>
+    </left>
+
+    <!-- ═══════════════════════ MAIN CONTENT ═══════════════════════ -->
+    <center>
+        <VBox styleClass="main-content" spacing="0">
+
+            <!-- ── Top bar ── -->
+            <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="16">
+                <VBox spacing="3">
+                    <Label text="Gestion des Centres" styleClass="page-title"/>
+                    <Label text="Gérez vos centres de gaming e-sport" styleClass="page-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <!-- Quick stats -->
+                <HBox spacing="12" alignment="CENTER">
+                    <VBox styleClass="topbar-stat" alignment="CENTER" spacing="1">
+                        <Label fx:id="lblStatTotal"  text="0" styleClass="topbar-stat-num"/>
+                        <Label text="Centres"        styleClass="topbar-stat-label"/>
+                    </VBox>
+                    <VBox styleClass="topbar-stat" alignment="CENTER" spacing="1">
+                        <Label fx:id="lblStatCities" text="0" styleClass="topbar-stat-num-green"/>
+                        <Label text="Villes"         styleClass="topbar-stat-label"/>
+                    </VBox>
+                </HBox>
+                <Label fx:id="lblStatus" text="● Connecté" styleClass="status-pill"/>
+            </HBox>
+
+            <!-- ── Table area ── -->
+            <VBox spacing="0" VBox.vgrow="ALWAYS" styleClass="content-area">
+                <VBox styleClass="table-card" spacing="0" VBox.vgrow="ALWAYS">
+
+                    <!-- Toolbar row 1 -->
+                    <HBox styleClass="table-toolbar" alignment="CENTER_LEFT" spacing="12">
+                        <VBox spacing="2">
+                            <Label text="LISTE DES CENTRES" styleClass="table-title"/>
+                            <Label fx:id="lblCount" text="0 centre(s)" styleClass="table-count"/>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="➕  Nouveau Centre"
+                                onAction="#handleOpenAddDialog"
+                                styleClass="btn-add-toolbar"/>
+                    </HBox>
+
+                    <!-- Toolbar row 2: filters -->
+                    <HBox styleClass="filter-bar" alignment="CENTER_LEFT" spacing="10">
+                        <TextField fx:id="tfSearch"
+                                   promptText="🔍  Rechercher par nom, email..."
+                                   styleClass="search-input"
+                                   prefWidth="250"/>
+                        <ComboBox fx:id="cbFilterCity"
+                                  promptText="📍  Toutes les villes"
+                                  styleClass="filter-combo"
+                                  prefWidth="200"/>
+                        <ComboBox fx:id="cbSort"
+                                  promptText="🔀  Trier par"
+                                  styleClass="filter-combo"
+                                  prefWidth="150"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="↺  Réinitialiser"
+                                onAction="#handleResetFilters"
+                                styleClass="btn-reset"/>
+                    </HBox>
+
+                    <!-- TableView -->
+                    <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="main-table">
+                        <columns>
+                            <TableColumn fx:id="colId"      text="ID"      prefWidth="55"  style="-fx-alignment: CENTER;"/>
+                            <TableColumn fx:id="colName"    text="Nom"     prefWidth="210"/>
+                            <TableColumn fx:id="colCity"    text="Ville"   prefWidth="130"/>
+                            <TableColumn fx:id="colAddress" text="Adresse" prefWidth="220"/>
+                            <TableColumn fx:id="colEmail"   text="Email"   prefWidth="195"/>
+                            <TableColumn fx:id="colTournois" text="Tournois" prefWidth="80" style="-fx-alignment: CENTER;"/>
+                            <TableColumn fx:id="colActions" text="Actions" prefWidth="150" style="-fx-alignment: CENTER;"/>
+                        </columns>
+                        <placeholder>
+                            <VBox alignment="CENTER" spacing="14">
+                                <Label text="🏢" style="-fx-font-size:52px;-fx-text-fill:#3A4155;"/>
+                                <Label text="Aucun centre trouvé"
+                                       style="-fx-text-fill:#8A93A5;-fx-font-size:15px;-fx-font-weight:600;"/>
+                                <Label text="Modifiez les filtres ou ajoutez un nouveau centre"
+                                       style="-fx-text-fill:#3A4155;-fx-font-size:12px;"/>
+                            </VBox>
+                        </placeholder>
+                    </TableView>
+
+                    <!-- Footer -->
+                    <HBox styleClass="table-footer" alignment="CENTER_LEFT" spacing="8">
+                        <Label text="💡  ✎ Modifier  •  🗑 Supprimer  •  👁 Détails" styleClass="footer-hint"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label text="CentreManager v2.0  —  Back Office" styleClass="footer-version"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

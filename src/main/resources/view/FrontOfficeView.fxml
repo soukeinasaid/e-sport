@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.FrontOfficeController"
+      stylesheets="/css/frontoffice.css"
+      styleClass="fo-main"
+      spacing="0"
+      prefWidth="1000"
+      prefHeight="700">
+
+    <!-- HERO -->
+    <VBox styleClass="fo-hero" spacing="10">
+
+        <HBox alignment="CENTER_LEFT" spacing="16">
+
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="🏆 Tournois Disponibles"
+                       styleClass="fo-hero-title"/>
+
+                <Label text="Rejoignez les meilleurs tournois e-sport !"
+                       styleClass="fo-hero-sub"/>
+            </VBox>
+
+            <Label fx:id="lblStatus"
+                   text="● En ligne"
+                   styleClass="fo-status-pill"/>
+        </HBox>
+
+        <!-- STATS -->
+        <HBox spacing="14" style="-fx-padding: 8 0 0 0;">
+
+            <VBox styleClass="fo-stat-chip"
+                  alignment="CENTER"
+                  spacing="2">
+
+                <Label fx:id="lblTotalCount"
+                       text="0"
+                       styleClass="fo-stat-num"/>
+
+                <Label text="Tournois"
+                       styleClass="fo-stat-label"/>
+            </VBox>
+
+            <VBox styleClass="fo-stat-chip"
+                  alignment="CENTER"
+                  spacing="2">
+
+                <Label fx:id="lblActiveCount"
+                       text="0"
+                       styleClass="fo-stat-num-green"/>
+
+                <Label text="En cours"
+                       styleClass="fo-stat-label"/>
+            </VBox>
+
+            <VBox styleClass="fo-stat-chip"
+                  alignment="CENTER"
+                  spacing="2">
+
+                <Label fx:id="lblUpcomingCount"
+                       text="0"
+                       styleClass="fo-stat-num-blue"/>
+
+                <Label text="À venir"
+                       styleClass="fo-stat-label"/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- SEARCH -->
+            <HBox styleClass="fo-search-box"
+                  alignment="CENTER_LEFT"
+                  spacing="8">
+
+                <Label text="🔍"/>
+
+                <TextField fx:id="tfSearch"
+                           promptText="Rechercher..."
+                           styleClass="fo-search-field"
+                           prefWidth="210"/>
+            </HBox>
+
+            <!-- FILTER -->
+            <ComboBox fx:id="cbFilter"
+                      promptText="Tous les jeux"
+                      prefWidth="160"/>
+        </HBox>
+    </VBox>
+
+    <!-- CARDS -->
+    <ScrollPane fitToWidth="true"
+                VBox.vgrow="ALWAYS"
+                styleClass="fo-scroll">
+
+        <FlowPane fx:id="cardsPane"
+                  hgap="18"
+                  vgap="18"
+                  prefWrapLength="800"
+                  styleClass="fo-cards-pane"/>
+    </ScrollPane>
+
+</VBox>

@@ -9,9 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import service.UserService;
 
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class UserManagementController {
 
     @FXML
     private TableView<User> userTableView;
-    
+
     private ObservableList<User> allUsers;
     private UserService userService;
 
@@ -87,24 +89,24 @@ public class UserManagementController {
     public void initialize() {
         userService = new UserService();
         allUsers = FXCollections.observableArrayList();
-        
+
         setupTableColumns();
         setupAddUserForm();
         loadUsers();
-        
+
         // Add search functionality
         searchField.textProperty().addListener((observable, oldValue, newValue) -> filterUsers());
     }
 
     private void setupTableColumns() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idUser"));
-        nameColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleStringProperty(
-                cellData.getValue().getPrenom() + " " + cellData.getValue().getNom()));
+        nameColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        cellData.getValue().getPrenom() + " " + cellData.getValue().getNom()));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        roleColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getRoleString()));
-        
+        roleColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getRoleString()));
+
         // Add custom cell factory for role badges
         roleColumn.setCellFactory(param -> new TableCell<User, String>() {
             @Override
@@ -124,7 +126,7 @@ public class UserManagementController {
                 }
             }
         });
-        
+
         // Add custom cell factory for actions
         actionsColumn.setCellFactory(param -> new TableCell<User, String>() {
             @Override
@@ -135,40 +137,40 @@ public class UserManagementController {
                 } else {
                     User user = getTableView().getItems().get(getIndex());
                     HBox actionBox = new HBox(5);
-                    
+
                     Button editButton = new Button("✏️ Edit");
                     editButton.setStyle("-fx-background-color: linear-gradient(to right, #4CAF50, #66BB6A); -fx-text-fill: white; -fx-font-weight: 600; -fx-border-radius: 6; -fx-background-radius: 6;");
                     editButton.setOnAction(e -> editUser(user));
-                    
+
                     Button deleteButton = new Button("🗑️ Delete");
                     deleteButton.setStyle("-fx-background-color: linear-gradient(to right, #f44336, #ef5350); -fx-text-fill: white; -fx-font-weight: 600; -fx-border-radius: 6; -fx-background-radius: 6;");
                     deleteButton.setOnAction(e -> deleteUser(user));
-                    
+
                     Button roleButton = new Button("🔧 Role");
                     roleButton.setStyle("-fx-background-color: linear-gradient(to right, #2196F3, #42A5F5); -fx-text-fill: white; -fx-font-weight: 600; -fx-border-radius: 6; -fx-background-radius: 6;");
                     roleButton.setOnAction(e -> toggleUserRole(user));
-                    
+
                     // Don't allow deleting current admin
                     User currentUser = utilies.Session.getUser();
                     if (currentUser != null && currentUser.getIdUser() == user.getIdUser()) {
                         deleteButton.setDisable(true);
                         deleteButton.setTooltip(new Tooltip("Cannot delete yourself"));
                     }
-                    
+
                     actionBox.getChildren().addAll(editButton, roleButton, deleteButton);
                     setGraphic(actionBox);
                 }
             }
         });
-        
+
         userTableView.setItems(allUsers);
     }
 
-    
+
     private void setupAddUserForm() {
         newUserRoleComboBox.getItems().addAll("USER", "ADMIN");
         newUserRoleComboBox.setValue("USER");
-        
+
         // Initially hide the form
         addUserForm.setVisible(false);
         addUserForm.setManaged(false);
@@ -188,19 +190,19 @@ public class UserManagementController {
 
     private void filterUsers() {
         String searchText = searchField.getText().toLowerCase();
-        
+
         ObservableList<User> filteredList = FXCollections.observableArrayList();
-        
+
         for (User user : allUsers) {
-            boolean matchesSearch = searchText.isEmpty() || 
-                (user.getPrenom() + " " + user.getNom()).toLowerCase().contains(searchText) ||
-                user.getEmail().toLowerCase().contains(searchText);
-            
+            boolean matchesSearch = searchText.isEmpty() ||
+                    (user.getPrenom() + " " + user.getNom()).toLowerCase().contains(searchText) ||
+                    user.getEmail().toLowerCase().contains(searchText);
+
             if (matchesSearch) {
                 filteredList.add(user);
             }
         }
-        
+
         userTableView.setItems(filteredList);
     }
 
@@ -233,15 +235,15 @@ public class UserManagementController {
         String email = newUserEmailField.getText();
         String password = newUserPasswordField.getText();
         String role = newUserRoleComboBox.getValue();
-        
+
         if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || password.isEmpty()) {
             showAlert("Error", "Please fill all fields", Alert.AlertType.ERROR);
             return;
         }
-        
+
         User newUser = new User(nom, prenom, email, password);
         newUser.setRoleFromString(role);
-        
+
         if (userService.register(newUser)) {
             showAlert("Success", "User created successfully", Alert.AlertType.INFORMATION);
             hideAddUserForm(null);
@@ -256,24 +258,24 @@ public class UserManagementController {
         Dialog<User> dialog = new Dialog<>();
         dialog.setTitle("Edit User");
         dialog.setHeaderText("Edit user: " + user.getPrenom() + " " + user.getNom());
-        
+
         // Set the button types
         ButtonType saveButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
-        
+
         // Create the form
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 150, 10, 10));
-        
+
         TextField nameField = new TextField(user.getNom());
         TextField firstNameField = new TextField(user.getPrenom());
         TextField emailField = new TextField(user.getEmail());
         ComboBox<String> roleComboBox = new ComboBox<>();
         roleComboBox.getItems().addAll("USER", "ADMIN");
         roleComboBox.setValue(user.getRoleString());
-        
+
         grid.add(new Label("Name:"), 0, 0);
         grid.add(nameField, 1, 0);
         grid.add(new Label("First Name:"), 0, 1);
@@ -282,9 +284,9 @@ public class UserManagementController {
         grid.add(emailField, 1, 2);
         grid.add(new Label("Role:"), 0, 3);
         grid.add(roleComboBox, 1, 3);
-        
+
         dialog.getDialogPane().setContent(grid);
-        
+
         // Convert the result
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == saveButtonType) {
@@ -296,7 +298,7 @@ public class UserManagementController {
             }
             return null;
         });
-        
+
         Optional<User> result = dialog.showAndWait();
         result.ifPresent(updatedUser -> {
             if (userService.update(updatedUser)) {
@@ -314,12 +316,12 @@ public class UserManagementController {
             showAlert("Error", "Cannot delete yourself", Alert.AlertType.ERROR);
             return;
         }
-        
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Delete");
         alert.setHeaderText("Delete User");
         alert.setContentText("Are you sure you want to delete " + user.getPrenom() + " " + user.getNom() + "?");
-        
+
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             if (userService.delete(user.getIdUser())) {
@@ -337,14 +339,14 @@ public class UserManagementController {
             showAlert("Error", "Cannot change your own role", Alert.AlertType.ERROR);
             return;
         }
-        
+
         String newRole = user.isAdmin() ? "USER" : "ADMIN";
-        
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Change Role");
         alert.setHeaderText("Change User Role");
         alert.setContentText("Change " + user.getPrenom() + " " + user.getNom() + "'s role to " + newRole + "?");
-        
+
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             user.setRoleFromString(newRole);
@@ -366,16 +368,16 @@ public class UserManagementController {
     private void handleSearch(ActionEvent event) {
         String searchText = searchField.getText().toLowerCase();
         ObservableList<User> filteredList = FXCollections.observableArrayList();
-        
+
         for (User user : allUsers) {
             String fullName = (user.getPrenom() + " " + user.getNom()).toLowerCase();
             String email = user.getEmail().toLowerCase();
-            
+
             if (fullName.contains(searchText) || email.contains(searchText)) {
                 filteredList.add(user);
             }
         }
-        
+
         userTableView.setItems(filteredList);
     }
 
@@ -413,7 +415,7 @@ public class UserManagementController {
         allUsersBtn.getStyleClass().remove("active");
         adminUsersBtn.getStyleClass().remove("active");
         normalUsersBtn.getStyleClass().remove("active");
-        
+
         switch (activeFilter) {
             case "admin":
                 adminUsersBtn.getStyleClass().add("active");
@@ -432,7 +434,7 @@ public class UserManagementController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainLayout.fxml"));
             Parent mainLayout = loader.load();
-            
+
             // Get the current stage and set the new scene
             javafx.stage.Stage stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
             javafx.scene.Scene scene = new javafx.scene.Scene(mainLayout);
@@ -445,7 +447,7 @@ public class UserManagementController {
             stage.setScene(scene);
             stage.setTitle("VictoryGrid - Main Dashboard");
             stage.show();
-            
+
         } catch (IOException e) {
             System.err.println("Error returning to main layout: " + e.getMessage());
             e.printStackTrace();
@@ -481,5 +483,80 @@ public class UserManagementController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+
+    @FXML
+    private void handleTournamentManagement() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TournoiView.fxml"));
+            Parent tournamentView = loader.load();
+
+            // Navigate up to find the BorderPane (MainLayout)
+            Stage stage = (Stage) userTableView.getScene().getWindow();
+            Scene scene = stage.getScene();
+
+            // The root might be a BorderPane (MainLayout) or something else
+            // Find the BorderPane by traversing up
+            Parent root = scene.getRoot();
+
+            // If root is a ScrollPane (like UserManagementView), we need to find its parent
+            if (root instanceof ScrollPane) {
+                // Get the parent of this ScrollPane (should be BorderPane from MainLayout)
+                Parent parent = root.getParent();
+                if (parent instanceof BorderPane) {
+                    ((BorderPane) parent).setCenter(tournamentView);
+                } else {
+                    // Fallback: replace the entire scene root
+                    scene.setRoot(tournamentView);
+                }
+            } else if (root instanceof BorderPane) {
+                ((BorderPane) root).setCenter(tournamentView);
+            } else {
+                scene.setRoot(tournamentView);
+            }
+
+            stage.setTitle("🏆 Gestion des Tournois");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleCenterManagement() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CentreView.fxml"));
+            Parent tournamentView = loader.load();
+
+            // Navigate up to find the BorderPane (MainLayout)
+            Stage stage = (Stage) userTableView.getScene().getWindow();
+            Scene scene = stage.getScene();
+
+            // The root might be a BorderPane (MainLayout) or something else
+            // Find the BorderPane by traversing up
+            Parent root = scene.getRoot();
+
+            // If root is a ScrollPane (like UserManagementView), we need to find its parent
+            if (root instanceof ScrollPane) {
+                // Get the parent of this ScrollPane (should be BorderPane from MainLayout)
+                Parent parent = root.getParent();
+                if (parent instanceof BorderPane) {
+                    ((BorderPane) parent).setCenter(tournamentView);
+                } else {
+                    // Fallback: replace the entire scene root
+                    scene.setRoot(tournamentView);
+                }
+            } else if (root instanceof BorderPane) {
+                ((BorderPane) root).setCenter(tournamentView);
+            } else {
+                scene.setRoot(tournamentView);
+            }
+
+            stage.setTitle("🏆 Gestion des centres");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.BracketController"
+            stylesheets="/css/frontoffice.css"
+            styleClass="fo-root">
+
+    <!-- CENTER ONLY -->
+    <center>
+        <VBox styleClass="fo-main" spacing="0.0">
+
+            <VBox styleClass="fo-hero" spacing="10.0">
+                <HBox alignment="CENTER_LEFT" spacing="16.0">
+
+                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                        <Label fx:id="lblTitle"
+                               text="📊 Bracket et Matchs"
+                               styleClass="fo-hero-title"/>
+
+                        <Label fx:id="lblSub"
+                               text="Suivez l'avancement du tournoi"
+                               styleClass="fo-hero-sub"/>
+                    </VBox>
+
+                    <Label fx:id="lblStatus"
+                           text="● En ligne"
+                           styleClass="fo-status-pill"/>
+
+                    <!-- Back button -->
+                    <Button text="← Retour aux tournois"
+                            styleClass="fo-btn-back"
+                            onAction="#handleBackToTournois"/>
+
+                </HBox>
+            </VBox>
+
+            <Separator/>
+
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="bracketContainer" spacing="10.0"
+                      style="-fx-padding: 24;"/>
+            </ScrollPane>
+
+        </VBox>
+    </center>
+
+</BorderPane>

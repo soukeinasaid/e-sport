@@ -31,6 +31,7 @@
                 <Button text="⚔  Matches" styleClass="menu-item" onAction="#loadMatches"/>
                 <Button text="📈  Planning" styleClass="menu-item" onAction="#loadStats"/>
                 <Button text="💬  Forum" styleClass="menu-item" onAction="#loadForum"/>
+                <Button text="   Center" styleClass="menu-item" onAction="#loadCenter"/>
                 <Button text="👤  Profile" styleClass="menu-item" onAction="#loadProfile"/>
 
             </VBox>

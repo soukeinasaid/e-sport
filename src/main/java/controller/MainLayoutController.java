@@ -19,7 +19,7 @@ import java.net.URL;
 public class MainLayoutController {
     @FXML
     private StackPane contentArea;
-    
+
     @FXML
     private VBox menuContainer;
 
@@ -37,7 +37,7 @@ public class MainLayoutController {
         adminButton.setStyle("-fx-font-size: 14px; -fx-padding: 10px; -fx-background-color: #ff6b6b; -fx-text-fill: white;");
         adminButton.setMaxWidth(Double.MAX_VALUE);
         adminButton.setOnAction(this::loadAdminDashboard);
-        
+
         // Insert after Dashboard button (index 1)
         if (menuContainer.getChildren().size() > 1) {
             menuContainer.getChildren().add(2, adminButton);
@@ -59,7 +59,20 @@ public class MainLayoutController {
     public void loadHome(ActionEvent actionEvent) {
     }
 
+
     public void loadTournaments(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FrontOfficeView.fxml"));
+            Parent  loadTournaments= loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(loadTournaments);
+
+        } catch (IOException e) {
+            System.err.println("Error loading admin dashboard: " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
     public void loadDashboard(ActionEvent actionEvent) {
@@ -86,15 +99,16 @@ public class MainLayoutController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin_dashboard.fxml"));
             Parent adminDashboard = loader.load();
-            
+
             contentArea.getChildren().clear();
             contentArea.getChildren().add(adminDashboard);
-            
+
         } catch (IOException e) {
             System.err.println("Error loading admin dashboard: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void handleLogout(ActionEvent event) {
@@ -118,6 +132,48 @@ public class MainLayoutController {
             stage.show();
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+/*
+    public void loadBracket(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BracketView.fxml"));
+            Parent bracketView = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(bracketView);
+
+        } catch (IOException e) {
+            System.err.println("Error loading bracket: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+/*
+    public void loadLeaderBoardt(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LeaderboardView.fxml"));
+            Parent bracketView = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(bracketView);
+
+        } catch (IOException e) {
+            System.err.println("Error loading bracket: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }*/
+
+    public void loadCenter(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FrontOfficeCentreView.fxml"));
+            Parent bracketView = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(bracketView);
+
+        } catch (IOException e) {
+            System.err.println("Error loading bracket: " + e.getMessage());
             e.printStackTrace();
         }
     }

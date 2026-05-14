@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.LeaderboardController"
+            stylesheets="/css/frontoffice.css"
+            styleClass="fo-root"
+            prefWidth="1200"
+            prefHeight="750">
+    <center>
+        <VBox styleClass="fo-main" spacing="0">
+            <VBox styleClass="fo-hero fo-leader-hero" spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="18">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label fx:id="lblTitle" text="Classements" styleClass="fo-hero-title"/>
+                        <Label fx:id="lblSub" text="Visualisez le podium, comparez les bilans et suivez la meilleure dynamique du tournoi." styleClass="fo-hero-sub"/>
+                    </VBox>
+                    <Label fx:id="lblStatus" text="Nom du tournoi" styleClass="fo-status-pill"/>
+                    <!-- Back button added here -->
+                    <Button text="← Retour aux tournois" styleClass="fo-btn-back" onAction="#handleBackToTournois"/>
+                </HBox>
+            </VBox>
+
+            <ScrollPane styleClass="fo-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <HBox spacing="22" style="-fx-padding: 24;" fillHeight="true">
+                    <VBox spacing="18" styleClass="fo-leader-shell" HBox.hgrow="ALWAYS">
+                        <HBox spacing="14">
+                            <VBox styleClass="fo-leader-chip fo-leader-chip-gold" HBox.hgrow="ALWAYS">
+                                <Label text="Équipes" styleClass="fo-leader-chip-label"/>
+                                <Label fx:id="summaryTeamsLabel" text="--" styleClass="fo-leader-chip-value"/>
+                            </VBox>
+                            <VBox styleClass="fo-leader-chip fo-leader-chip-blue" HBox.hgrow="ALWAYS">
+                                <Label text="Leader actuel" styleClass="fo-leader-chip-label"/>
+                                <Label fx:id="summaryTopTeamLabel" text="--" styleClass="fo-leader-chip-text"/>
+                            </VBox>
+                            <VBox styleClass="fo-leader-chip fo-leader-chip-green" HBox.hgrow="ALWAYS">
+                                <Label text="Meilleur ratio" styleClass="fo-leader-chip-label"/>
+                                <Label fx:id="summaryBestRateLabel" text="--" styleClass="fo-leader-chip-value"/>
+                            </VBox>
+                        </HBox>
+
+                        <VBox styleClass="fo-leaderboard-panel" spacing="14" VBox.vgrow="ALWAYS">
+                            <HBox alignment="CENTER_LEFT">
+                                <VBox spacing="3" HBox.hgrow="ALWAYS">
+                                    <Label text="Classement général" styleClass="fo-section-title"/>
+                                    <Label text="Trié par victoires, puis défaites et nom d'équipe" styleClass="fo-section-caption"/>
+                                </VBox>
+                            </HBox>
+
+                            <TableView fx:id="leaderboardTable" styleClass="fo-leaderboard-table" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="colRank" text="#" prefWidth="70"/>
+                                    <TableColumn fx:id="colTeam" text="Équipe" prefWidth="260"/>
+                                    <TableColumn fx:id="colWins" text="Victoires" prefWidth="110"/>
+                                    <TableColumn fx:id="colLosses" text="Défaites" prefWidth="110"/>
+                                    <TableColumn fx:id="colMatches" text="Matchs" prefWidth="100"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+
+                    <VBox styleClass="fo-stats-sidebar" spacing="16" prefWidth="330" minWidth="330">
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <StackPane styleClass="fo-rank-badge">
+                                <Label fx:id="selectedRankLabel" text="--" styleClass="fo-rank-badge-text"/>
+                            </StackPane>
+                            <VBox spacing="3">
+                                <Label fx:id="statsTitleLabel" text="Sélection d'équipe" styleClass="fo-stats-title"/>
+                                <Label fx:id="statsSubtitleLabel" text="Choisissez une ligne dans le classement pour afficher la fiche de performance." styleClass="fo-stats-subtitle" wrapText="true"/>
+                            </VBox>
+                        </HBox>
+
+                        <VBox styleClass="fo-stat-card" spacing="8">
+                            <Label text="Taux de victoire" styleClass="fo-stat-card-label"/>
+                            <Label fx:id="statWinRate" text="--" styleClass="fo-stat-card-value"/>
+                        </VBox>
+
+                        <HBox spacing="12">
+                            <VBox styleClass="fo-mini-stat-card" HBox.hgrow="ALWAYS">
+                                <Label text="Victoires" styleClass="fo-mini-stat-label"/>
+                                <Label fx:id="statWins" text="--" styleClass="fo-mini-stat-value"/>
+                            </VBox>
+                            <VBox styleClass="fo-mini-stat-card" HBox.hgrow="ALWAYS">
+                                <Label text="Défaites" styleClass="fo-mini-stat-label"/>
+                                <Label fx:id="statLosses" text="--" styleClass="fo-mini-stat-value"/>
+                            </VBox>
+                        </HBox>
+
+                        <VBox styleClass="fo-mini-stat-card">
+                            <Label text="Matchs joués" styleClass="fo-mini-stat-label"/>
+                            <Label fx:id="statMatches" text="--" styleClass="fo-mini-stat-value"/>
+                        </VBox>
+
+                        <VBox styleClass="fo-insight-box" spacing="8" VBox.vgrow="ALWAYS">
+                            <Label text="Lecture rapide" styleClass="fo-insight-title"/>
+                            <Label fx:id="statsInsightLabel" text="Les statistiques détaillées apparaîtront ici." styleClass="fo-insight-text" wrapText="true"/>
+                            <VBox.vgrow>
+                                <Priority fx:value="ALWAYS"/>
+                            </VBox.vgrow>
+                        </VBox>
+                    </VBox>
+                </HBox>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

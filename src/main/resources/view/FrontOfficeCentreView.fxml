@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.FrontOfficeCentreController"
+            stylesheets="/css/frontoffice.css"
+            styleClass="fo-root"
+            prefWidth="1200" prefHeight="750">
+
+
+    <center>
+        <VBox styleClass="fo-main" spacing="0">
+
+            <!-- Hero bar -->
+            <VBox styleClass="fo-hero" spacing="10">
+                <HBox alignment="CENTER_LEFT" spacing="16">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="🏢  Nos Centres E-Sport" styleClass="fo-hero-title"/>
+                        <Label text="Découvrez les meilleurs centres de gaming partout en France et en Tunisie"
+                               styleClass="fo-hero-sub"/>
+                    </VBox>
+                    <Label fx:id="lblStatus" text="● En ligne" styleClass="fo-status-pill"/>
+                </HBox>
+
+                <!-- Stats + search row -->
+                <HBox spacing="14" style="-fx-padding: 8 0 0 0;">
+                    <VBox styleClass="fo-stat-chip" alignment="CENTER" spacing="2">
+                        <Label fx:id="lblTotalCentres" text="0" styleClass="fo-stat-num"/>
+                        <Label text="Centres" styleClass="fo-stat-label"/>
+                    </VBox>
+                    <VBox styleClass="fo-stat-chip" alignment="CENTER" spacing="2">
+                        <Label fx:id="lblTotalCities" text="0" styleClass="fo-stat-num-green"/>
+                        <Label text="Villes" styleClass="fo-stat-label"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <!-- Search -->
+                    <HBox styleClass="fo-search-box" alignment="CENTER_LEFT" spacing="8">
+                        <Label text="🔍" style="-fx-font-size:13px;-fx-text-fill:#8A93A5;"/>
+                        <TextField fx:id="tfSearch"
+                                   promptText="Rechercher un centre ou ville..."
+                                   styleClass="fo-search-field"
+                                   prefWidth="240"/>
+                    </HBox>
+                </HBox>
+            </VBox>
+
+            <!-- Cards grid -->
+            <ScrollPane styleClass="fo-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <FlowPane fx:id="cardsPane"
+                          styleClass="fo-cards-pane"
+                          hgap="18" vgap="18"
+                          prefWrapLength="800"/>
+            </ScrollPane>
+
+        </VBox>
+    </center>
+
+</BorderPane>
