@@ -69,14 +69,6 @@
                     text="❤️ Favorites"
                     styleClass="filter-button"
                     onAction="#handleFavorites"/>
-            <Button fx:id="dashboardBtn"
-                    text="🏠 Dashboard"
-                    styleClass="filter-button"
-                    onAction="#handleDashboard"/>
-            <Button fx:id="aiGeneratorBtn"
-                    text="🤖 AI Generator"
-                    styleClass="filter-button ai-button"
-                    onAction="#handleAIGenerator"/>
         </HBox>
     </VBox>
 
@@ -97,17 +89,11 @@
                   wrapText="true"
                   styleClass="forum-textarea"/>
 
-        <!-- AI ASSISTANCE AND PUBLISH BUTTONS -->
-        <HBox spacing="10" alignment="CENTER_RIGHT">
-            <Button fx:id="aiGeneratorBtn"
-                    text="🤖 AI Generator"
-                    styleClass="filter-button ai-button"
-                    onAction="#handleAIGenerator"/>
-            <Button fx:id="publishBtn"
-                    text="Publish"
-                    styleClass="forum-button"
-                    onAction="#handlePublish"/>
-        </HBox>
+        <!-- BUTTON -->
+        <Button fx:id="publishBtn"
+                text="Publish"
+                styleClass="forum-button"
+                onAction="#handlePublish"/>
 
     </VBox>
 

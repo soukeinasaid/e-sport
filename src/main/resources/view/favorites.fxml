@@ -27,16 +27,12 @@
                    styleClass="forum-description"/>
         </VBox>
 
-        <!-- NAVIGATION BUTTONS -->
-        <HBox spacing="8" alignment="CENTER_LEFT">
+        <!-- BACK BUTTON -->
+        <HBox alignment="CENTER_LEFT">
             <Button fx:id="backBtn"
                     text="← Back to Forum"
                     styleClass="filter-button"
                     onAction="#handleBackToForum"/>
-            <Button fx:id="dashboardBtn"
-                    text="🏠 Dashboard"
-                    styleClass="filter-button"
-                    onAction="#handleDashboard"/>
         </HBox>
 
         <!-- CREATE/EDIT POST SECTION -->

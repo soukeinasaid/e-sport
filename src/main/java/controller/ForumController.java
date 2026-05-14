@@ -9,8 +9,6 @@ import entity.Forum;
 import service.ForumService;
 import service.FavoriteService;
 import utilies.Session;
-import utilies.AIContentGenerator;
-import utilies.HuggingFaceAI;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -49,25 +47,7 @@ public class ForumController {
     private Button favoritesBtn;
 
     @FXML
-    private Button dashboardBtn;
-
-    @FXML
-    private Button aiGenerateBtn;
-
-    @FXML
-    private Button aiGeneratorBtn;
-
-    @FXML
     private HBox paginationContainer;
-
-    // Public setters for AI generator access
-    public void setTitleField(String title) {
-        titleField.setText(title);
-    }
-
-    public void setContentArea(String content) {
-        contentArea.setText(content);
-    }
 
     @FXML
     private Label pageInfoLabel;
@@ -184,23 +164,10 @@ public class ForumController {
 
     @FXML
     public void handleFavorites() {
-        System.out.println("ForumController: Favorites button clicked - navigating to favorites interface");
+        System.out.println("Favorites button clicked - navigating to favorites interface");
         try {
-            // Check if user is logged in
-            if (Session.getUserId() <= 0) {
-                showAlert("Login Required", "Please log in to view your favorites.");
-                return;
-            }
-            
             // Load the favorites view
-            java.net.URL fxmlUrl = getClass().getResource("/view/favorites.fxml");
-            if (fxmlUrl == null) {
-                System.err.println("Error: favorites.fxml not found in resources");
-                showAlert("Resource Error", "Favorites page not found. Please contact support.");
-                return;
-            }
-            
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(fxmlUrl);
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/view/favorites.fxml"));
             javafx.scene.Parent root = loader.load();
             
             // Get the current stage and set new scene
@@ -208,152 +175,16 @@ public class ForumController {
             javafx.scene.Scene scene = new javafx.scene.Scene(root);
             
             // Apply CSS
-            java.net.URL cssUrl = getClass().getResource("/css/style.css");
-            if (cssUrl != null) {
-                scene.getStylesheets().add(cssUrl.toExternalForm());
-            } else {
-                System.err.println("Warning: CSS file not found");
-            }
+            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
             
             stage.setScene(scene);
-            stage.setTitle("VictoryGrid - My Favorites");
+            stage.setTitle("My Favorites");
             stage.show();
-            
-            System.out.println("ForumController: Successfully navigated to favorites view");
             
         } catch (Exception e) {
             System.err.println("Error loading favorites view: " + e.getMessage());
             e.printStackTrace();
             showAlert("Navigation Error", "Could not open favorites page. Please try again.");
-        }
-    }
-
-    @FXML
-    public void handleDashboard() {
-        System.out.println("ForumController: Dashboard button clicked - navigating to main dashboard");
-        try {
-            // Check if user is logged in
-            if (Session.getUserId() <= 0) {
-                showAlert("Login Required", "Please log in to access the dashboard.");
-                return;
-            }
-            
-            // Load the main layout view
-            java.net.URL fxmlUrl = getClass().getResource("/view/mainLayout.fxml");
-            if (fxmlUrl == null) {
-                System.err.println("Error: mainLayout.fxml not found in resources");
-                showAlert("Resource Error", "Dashboard not found. Please contact support.");
-                return;
-            }
-            
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(fxmlUrl);
-            javafx.scene.Parent root = loader.load();
-            
-            // Get the current stage and set new scene
-            javafx.stage.Stage stage = (javafx.stage.Stage) dashboardBtn.getScene().getWindow();
-            javafx.scene.Scene scene = new javafx.scene.Scene(root);
-            
-            // Apply CSS
-            java.net.URL cssUrl = getClass().getResource("/css/style.css");
-            if (cssUrl != null) {
-                scene.getStylesheets().add(cssUrl.toExternalForm());
-            } else {
-                System.err.println("Warning: CSS file not found");
-            }
-            
-            stage.setScene(scene);
-            stage.setTitle("VictoryGrid - Main Dashboard");
-            stage.show();
-            
-            System.out.println("ForumController: Successfully navigated to main dashboard");
-            
-        } catch (Exception e) {
-            System.err.println("Error loading dashboard view: " + e.getMessage());
-            e.printStackTrace();
-            showAlert("Navigation Error", "Could not open dashboard. Please try again.");
-        }
-    }
-
-    @FXML
-    public void handleAIGenerate() {
-        System.out.println("ForumController: Hugging Face AI Generate button clicked");
-        try {
-            String currentTitle = titleField.getText().trim();
-            String currentContent = contentArea.getText().trim();
-            
-            // If title is empty, generate a title suggestion
-            if (currentTitle.isEmpty()) {
-                String suggestedTitle = HuggingFaceAI.generateTitle("e-sports forum post");
-                titleField.setText(suggestedTitle);
-                System.out.println("Generated title suggestion: " + suggestedTitle);
-                showAlert("AI Suggestion", "Generated title: " + suggestedTitle + "\n\nClick AI Generate again to create content!");
-                return;
-            }
-            
-            // Generate AI content based on current title using Hugging Face API
-            String aiContent = HuggingFaceAI.generateContent(currentTitle);
-            contentArea.setText(aiContent);
-            
-            // Add a small animation effect (optional enhancement)
-            contentArea.setStyle("-fx-background-color: #f0f8ff; -fx-border-color: #4a90e2; -fx-border-width: 2px;");
-            
-            System.out.println("Generated AI content for title: " + currentTitle);
-            showAlert("Hugging Face AI Content Generated", "AI has created content based on your title!\n\nYou can edit it as needed before publishing.");
-            
-            // Remove animation after 2 seconds (optional)
-            javafx.application.Platform.runLater(() -> {
-                try {
-                    Thread.sleep(2000);
-                    contentArea.setStyle("");
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            });
-            
-        } catch (Exception e) {
-            System.err.println("Error generating AI content: " + e.getMessage());
-            e.printStackTrace();
-            showAlert("AI Error", "Failed to generate AI content. Please try again.");
-        }
-    }
-
-    @FXML
-    public void handleAIGenerator() {
-        System.out.println("ForumController: AI Generator button clicked - navigating to AI generator");
-        try {
-            // Load the AI generator view
-            java.net.URL fxmlUrl = getClass().getResource("/view/ai_generator.fxml");
-            if (fxmlUrl == null) {
-                System.err.println("Error: ai_generator.fxml not found in resources");
-                showAlert("Resource Error", "AI Generator page not found. Please contact support.");
-                return;
-            }
-            
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(fxmlUrl);
-            javafx.scene.Parent root = loader.load();
-            
-            // Get the current stage and set new scene
-            javafx.stage.Stage stage = (javafx.stage.Stage) aiGeneratorBtn.getScene().getWindow();
-            javafx.scene.Scene scene = new javafx.scene.Scene(root);
-            
-            // Apply CSS
-            java.net.URL cssUrl = getClass().getResource("/css/style.css");
-            if (cssUrl != null) {
-                scene.getStylesheets().add(cssUrl.toExternalForm());
-            } else {
-                System.err.println("Warning: CSS file not found");
-            }
-            
-            stage.setScene(scene);
-            stage.setTitle("VictoryGrid - AI Content Generator");
-            stage.show();
-            
-            System.out.println("ForumController: Successfully navigated to AI generator view");
-            
-        } catch (Exception e) {
-            System.err.println("Error loading AI generator view: " + e.getMessage());
-            e.printStackTrace();
-            showAlert("Navigation Error", "Could not open AI generator page. Please try again.");
         }
     }
 

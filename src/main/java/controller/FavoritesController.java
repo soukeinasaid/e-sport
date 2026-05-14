@@ -20,9 +20,6 @@ public class FavoritesController {
     private Button backBtn;
 
     @FXML
-    private Button dashboardBtn;
-
-    @FXML
     private VBox favoritesContainer;
 
     @FXML
@@ -80,15 +77,8 @@ public class FavoritesController {
     @FXML
     public void handleBackToForum() {
         try {
-            System.out.println("FavoritesController: Navigating back to forum view");
-            
             // Load the forum view
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/view/forum.fxml"));
-            if (loader.getLocation() == null) {
-                System.err.println("Error: forum.fxml not found in resources");
-                return;
-            }
-            
             javafx.scene.Parent root = loader.load();
             
             // Get the current stage and set new scene
@@ -96,81 +86,15 @@ public class FavoritesController {
             javafx.scene.Scene scene = new javafx.scene.Scene(root);
             
             // Apply CSS
-            java.net.URL cssUrl = getClass().getResource("/css/style.css");
-            if (cssUrl != null) {
-                scene.getStylesheets().add(cssUrl.toExternalForm());
-            } else {
-                System.err.println("Warning: CSS file not found");
-            }
+            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
             
             stage.setScene(scene);
-            stage.setTitle("VictoryGrid - Forum");
+            stage.setTitle("Forum");
             stage.show();
-            
-            System.out.println("FavoritesController: Successfully navigated back to forum view");
             
         } catch (Exception e) {
             System.err.println("Error loading forum view: " + e.getMessage());
             e.printStackTrace();
-            
-            // Show error dialog to user
-            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
-            alert.setTitle("Navigation Error");
-            alert.setHeaderText("Failed to return to forum");
-            alert.setContentText("Please try again or restart the application.");
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    public void handleDashboard() {
-        System.out.println("FavoritesController: Dashboard button clicked - navigating to main dashboard");
-        try {
-            // Check if user is logged in
-            if (Session.getUserId() <= 0) {
-                showAlert("Login Required", "Please log in to access the dashboard.");
-                return;
-            }
-            
-            // Load the main layout view
-            java.net.URL fxmlUrl = getClass().getResource("/view/mainLayout.fxml");
-            if (fxmlUrl == null) {
-                System.err.println("Error: mainLayout.fxml not found in resources");
-                showAlert("Resource Error", "Dashboard not found. Please contact support.");
-                return;
-            }
-            
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(fxmlUrl);
-            javafx.scene.Parent root = loader.load();
-            
-            // Get the current stage and set new scene
-            javafx.stage.Stage stage = (javafx.stage.Stage) dashboardBtn.getScene().getWindow();
-            javafx.scene.Scene scene = new javafx.scene.Scene(root);
-            
-            // Apply CSS
-            java.net.URL cssUrl = getClass().getResource("/css/style.css");
-            if (cssUrl != null) {
-                scene.getStylesheets().add(cssUrl.toExternalForm());
-            } else {
-                System.err.println("Warning: CSS file not found");
-            }
-            
-            stage.setScene(scene);
-            stage.setTitle("VictoryGrid - Main Dashboard");
-            stage.show();
-            
-            System.out.println("FavoritesController: Successfully navigated to main dashboard");
-            
-        } catch (Exception e) {
-            System.err.println("Error loading dashboard view: " + e.getMessage());
-            e.printStackTrace();
-            
-            // Show error dialog to user
-            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
-            alert.setTitle("Navigation Error");
-            alert.setHeaderText("Failed to return to dashboard");
-            alert.setContentText("Please try again or restart the application.");
-            alert.showAndWait();
         }
     }
 
