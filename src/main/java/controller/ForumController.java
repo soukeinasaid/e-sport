@@ -11,6 +11,7 @@ import service.FavoriteService;
 import utilies.Session;
 import utilies.AIContentGenerator;
 import utilies.HuggingFaceAI;
+import utilies.BadWordFilter;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -117,6 +118,19 @@ public class ForumController {
 
         if (title.isEmpty() || content.isEmpty()) {
             showAlert("Missing fields", "Please fill in both title and content");
+            return;
+        }
+
+        // Check for bad words in title and content
+        if (BadWordFilter.containsBadWords(title) || BadWordFilter.containsBadWords(content)) {
+            java.util.Set<String> detectedWords = new java.util.HashSet<>();
+            detectedWords.addAll(BadWordFilter.getDetectedBadWords(title));
+            detectedWords.addAll(BadWordFilter.getDetectedBadWords(content));
+            
+            String wordList = String.join(", ", detectedWords);
+            showAlert("Inappropriate Content", 
+                "Your post contains inappropriate language: " + wordList + "\n\n" +
+                "Please remove these words and try again. We maintain a respectful community.");
             return;
         }
 
