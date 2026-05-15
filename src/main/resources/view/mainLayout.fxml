@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.MainLayoutController"
+            prefWidth="1100.0"
+            prefHeight="700.0"
+            styleClass="app-root">
+
+    <!-- ================= SIDEBAR ================= -->
+    <left>
+        <VBox prefWidth="240.0" styleClass="sidebar">
+
+            <!-- HEADER -->
+            <VBox alignment="CENTER" spacing="10.0" styleClass="sidebar-header">
+                <!-- Profile Picture -->
+                <StackPane alignment="CENTER">
+                    <Circle fx:id="sidebarProfileCircle" 
+                           radius="35.0" 
+                           fill="#f0f0f0" 
+                           stroke="#cccccc" 
+                           strokeWidth="2.0"/>
+                    <ImageView fx:id="sidebarProfilePicture" 
+                             fitWidth="70.0" 
+                             fitHeight="70.0" 
+                             preserveRatio="true">
+                        <clip>
+                            <Circle radius="35.0" centerX="35.0" centerY="35.0"/>
+                        </clip>
+                    </ImageView>
+                    <Label fx:id="sidebarProfilePlaceholder" 
+                           text="👤" 
+                           style="-fx-font-size: 25px;"/>
+                </StackPane>
+                
+                <Label fx:id="sidebarUserName" 
+                       text="User Name" 
+                       styleClass="user-name-label"/>
+                <Label text="VictoryGrid" styleClass="logo-text"/>
+            </VBox>
+
+            <Separator/>
+
+            <!-- MENU -->
+            <VBox fx:id="menuContainer" spacing="8.0" styleClass="menu-container">
+
+                <Button text="🏠  Home" styleClass="menu-item" onAction="#loadHome"/>
+                <Button text="📊  Dashboard" styleClass="menu-item" onAction="#loadDashboard"/>
+                <Button text="🏆  Tournaments" styleClass="menu-item" onAction="#loadTournaments"/>
+                <Button text="👥  Store" styleClass="menu-item" onAction="#loadTeams"/>
+                <Button text="⚔  Matches" styleClass="menu-item" onAction="#loadMatches"/>
+                <Button text="📈  Planning" styleClass="menu-item" onAction="#loadStats"/>
+                <Button text="💬  Forum" styleClass="menu-item" onAction="#loadForum"/>
+                <Button text="👤  Profile" styleClass="menu-item" onAction="#loadProfile"/>
+
+            </VBox>
+
+            <!-- PUSH CONTENT DOWN -->
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- LOGOUT -->
+            <Separator/>
+
+            <HBox alignment="CENTER" styleClass="logout-container">
+                <Button text="⏻  Logout"
+                        styleClass="logout-button"
+                        onAction="#handleLogout"
+                        maxWidth="Infinity"/>
+            </HBox>
+
+        </VBox>
+    </left>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="main-content">
+
+            <!-- Background glow -->
+            <Pane styleClass="background-glow"/>
+
+            <!-- Default content -->
+            <Label text="VictoryGrid" styleClass="logo-text"/>
+
+        </StackPane>
+    </center>
+
+</BorderPane>

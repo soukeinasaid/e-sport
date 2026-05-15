@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controller.LoginController"
+           prefWidth="980.0"
+           prefHeight="640.0"
+           styleClass="app-root">
+
+    <children>
+        <AnchorPane styleClass="background-layer">
+            <children>
+                <VBox AnchorPane.topAnchor="0.0"
+                      AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.0"
+                      alignment="CENTER">
+
+                    <children>
+                        <VBox maxWidth="420.0"
+                              minWidth="320.0"
+                              spacing="18.0"
+                              styleClass="login-card">
+
+                            <padding>
+                                <Insets top="32.0" right="32.0" bottom="28.0" left="32.0"/>
+                            </padding>
+
+                            <children>
+
+                                <!-- HEADER VictoryGrid -->
+                                <VBox alignment="CENTER" spacing="6.0">
+
+                                    <HBox alignment="CENTER" spacing="10.0">
+                                        <ImageView fitHeight="50" fitWidth="60" pickOnBounds="true">
+                                            <image>
+                                                <Image url="@/assets/logo.png"/>
+                                            </image>
+                                        </ImageView>
+
+                                        <Label text="VictoryGrid" styleClass="logo-text"/>
+                                    </HBox>
+
+                                    <Label text="Sign in to continue your journey"
+                                           styleClass="subtitle-label"/>
+                                </VBox>
+
+                                <!-- LOGIN TITLE -->
+                                <Label text="Login" styleClass="title-label" maxWidth="Infinity" alignment="CENTER"/>
+
+                                <!-- EMAIL -->
+                                <VBox spacing="8.0">
+                                    <Label text="Email" styleClass="field-label"/>
+                                    <HBox spacing="10.0" styleClass="input-wrapper">
+                                        <TextField fx:id="emailField"
+                                                   promptText="name@example.com"
+                                                   HBox.hgrow="ALWAYS"
+                                                   styleClass="modern-input"/>
+                                    </HBox>
+                                </VBox>
+
+                                <!-- PASSWORD -->
+                                <VBox spacing="8.0">
+                                    <Label text="Password" styleClass="field-label"/>
+                                    <HBox spacing="10.0" styleClass="input-wrapper">
+                                        <Label text="*" styleClass="input-icon"/>
+                                        <PasswordField fx:id="passwordField"
+                                                       promptText="Enter your password"
+                                                       HBox.hgrow="ALWAYS"
+                                                       styleClass="modern-input"/>
+                                    </HBox>
+                                </VBox>
+
+                                <!-- ERROR -->
+                                <Label fx:id="errorLabel"
+                                       text=""
+                                       managed="false"
+                                       visible="false"
+                                       wrapText="true"
+                                       styleClass="error-label"/>
+
+                                <!-- BUTTON -->
+                                <Button fx:id="loginButton"
+                                        text="Login"
+                                        onAction="#handleLogin"
+                                        maxWidth="1.7976931348623157E308"
+                                        defaultButton="true"
+                                        styleClass="login-button"/>
+
+                                <!-- SOCIAL SIGN-IN -->
+                                <VBox spacing="12.0">
+                                    <Label text="Or continue with" styleClass="divider-label" maxWidth="Infinity" alignment="CENTER"/>
+                                    
+                                    <HBox spacing="12.0" maxWidth="1.7976931348623157E308">
+                                        <!-- GOOGLE SIGN-IN -->
+                                        <Button fx:id="googleSignInButton"
+                                                onAction="#handleGoogleSignIn"
+                                                HBox.hgrow="ALWAYS"
+                                                styleClass="social-signin-button google-button">
+                                            <graphic>
+                                                <HBox spacing="8.0" alignment="CENTER">
+                                                    <ImageView fitWidth="20.0" fitHeight="20.0" preserveRatio="true">
+                                                        <image>
+                                                            <Image url="@/assets/google-logo.svg"/>
+                                                        </image>
+                                                    </ImageView>
+                                                    <Label text="Google" styleClass="social-button-text"/>
+                                                </HBox>
+                                            </graphic>
+                                        </Button>
+                                        
+                                        <!-- FACEBOOK SIGN-IN -->
+                                        <Button fx:id="facebookSignInButton"
+                                                onAction="#handleFacebookSignIn"
+                                                HBox.hgrow="ALWAYS"
+                                                styleClass="social-signin-button facebook-button">
+                                            <graphic>
+                                                <HBox spacing="8.0" alignment="CENTER">
+                                                    <ImageView fitWidth="20.0" fitHeight="20.0" preserveRatio="true">
+                                                        <image>
+                                                            <Image url="@/assets/facebook-logo.svg"/>
+                                                        </image>
+                                                    </ImageView>
+                                                    <Label text="Facebook" styleClass="social-button-text"/>
+                                                </HBox>
+                                            </graphic>
+                                        </Button>
+                                    </HBox>
+                                </VBox>
+
+                                <!-- LINKS -->
+                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                    <Hyperlink fx:id="forgotPasswordLink"
+                                               text="Forgot Password?"
+                                               onAction="#handleForgotPassword"
+                                               styleClass="link-button"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Hyperlink text="Create Account"
+                                               onAction="#handleCreateAccount"
+                                               styleClass="link-button secondary-link"/>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

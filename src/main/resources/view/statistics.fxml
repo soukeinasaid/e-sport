@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.StatisticsController"
+            styleClass="forum-scroll-pane"
+            fitToWidth="true"
+            fitToHeight="true"
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="20"
+          alignment="TOP_CENTER"
+          styleClass="forum-root"
+          prefHeight="800.0"
+          minHeight="600.0">
+
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
+
+    <!-- HEADER -->
+    <VBox spacing="6" alignment="CENTER_LEFT">
+        <Label text="📊 Statistics Dashboard" styleClass="forum-title"/>
+        <Label text="Overview of users and forum activity"
+               styleClass="forum-description"/>
+    </VBox>
+
+    <!-- NAVIGATION BUTTONS -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="🏠 Back to Main Page" 
+                styleClass="forum-button-secondary"
+                onAction="#handleBackToMain"/>
+        <Button text="🛡️ Back to Admin Panel" 
+                styleClass="forum-button-secondary"
+                onAction="#handleBackToAdmin"/>
+    </HBox>
+
+    <!-- STATS TOGGLE BUTTONS -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="showUserStatsButton"
+                text="👥 User Statistics"
+                styleClass="filter-button active"
+                onAction="#showUserStats"/>
+        <Button fx:id="showForumStatsButton"
+                text="💬 Forum Statistics"
+                styleClass="filter-button"
+                onAction="#showForumStats"/>
+        <Button fx:id="showAllStatsButton"
+                text="📊 All Statistics"
+                styleClass="filter-button"
+                onAction="#showAllStats"/>
+    </HBox>
+
+    <!-- USER STATISTICS SECTION -->
+    <VBox fx:id="userStatsSection" spacing="12" styleClass="forum-card">
+        <Label text="👥 User Statistics" styleClass="section-title"/>
+        
+        <HBox spacing="15" alignment="CENTER_LEFT" styleClass="stats-container">
+            <!-- Total Users -->
+            <VBox spacing="5" styleClass="stat-card user-card" HBox.hgrow="ALWAYS">
+                <Label text="Total Users" styleClass="stat-title"/>
+                <Label fx:id="totalUsersLabel" text="0" styleClass="stat-number"/>
+                <Label text="Registered accounts" styleClass="stat-description"/>
+            </VBox>
+            
+            <!-- Active Users -->
+            <VBox spacing="5" styleClass="stat-card user-card" HBox.hgrow="ALWAYS">
+                <Label text="Active Users" styleClass="stat-title"/>
+                <Label fx:id="activeUsersLabel" text="0" styleClass="stat-number"/>
+                <Label text="Logged in recently" styleClass="stat-description"/>
+            </VBox>
+            
+            <!-- New Registrations -->
+            <VBox spacing="5" styleClass="stat-card user-card" HBox.hgrow="ALWAYS">
+                <Label text="New This Month" styleClass="stat-title"/>
+                <Label fx:id="newUsersLabel" text="0" styleClass="stat-number"/>
+                <Label text="New registrations" styleClass="stat-description"/>
+            </VBox>
+        </HBox>
+        
+        <HBox spacing="15" alignment="CENTER_LEFT" styleClass="stats-container">
+            <!-- Admin Count -->
+            <VBox spacing="5" styleClass="stat-card admin-card" HBox.hgrow="ALWAYS">
+                <Label text="Admins" styleClass="stat-title"/>
+                <Label fx:id="adminCountLabel" text="0" styleClass="stat-number"/>
+                <Label text="Administrators" styleClass="stat-description"/>
+            </VBox>
+            
+            <!-- Regular Users -->
+            <VBox spacing="5" styleClass="stat-card user-card" HBox.hgrow="ALWAYS">
+                <Label text="Regular Users" styleClass="stat-title"/>
+                <Label fx:id="regularUsersLabel" text="0" styleClass="stat-number"/>
+                <Label text="Standard accounts" styleClass="stat-description"/>
+            </VBox>
+            
+            <!-- Users with Profile Pictures -->
+            <VBox spacing="5" styleClass="stat-card user-card" HBox.hgrow="ALWAYS">
+                <Label text="With Profile Pics" styleClass="stat-title"/>
+                <Label fx:id="usersWithPicsLabel" text="0" styleClass="stat-number"/>
+                <Label text="Profile pictures set" styleClass="stat-description"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- USER ROLES PIE CHART -->
+    <VBox fx:id="userRolesChartSection" spacing="12" styleClass="forum-card">
+        <Label text="🎯 User Roles Distribution" styleClass="section-title"/>
+        <PieChart fx:id="userRolesPieChart" prefHeight="300.0" VBox.vgrow="ALWAYS"/>
+    </VBox>
+
+    <!-- FORUM STATISTICS SECTION -->
+    <VBox fx:id="forumStatsSection" spacing="12" styleClass="forum-card">
+        <Label text="💬 Forum Statistics" styleClass="section-title"/>
+        
+        <HBox spacing="15" alignment="CENTER_LEFT" styleClass="stats-container">
+            <!-- Total Posts -->
+            <VBox spacing="5" styleClass="stat-card action-card" HBox.hgrow="ALWAYS">
+                <Label text="Total Posts" styleClass="stat-title"/>
+                <Label fx:id="totalPostsLabel" text="0" styleClass="stat-number"/>
+                <Label text="All forum posts" styleClass="stat-description"/>
+            </VBox>
+            
+            <!-- Active Forums -->
+            <VBox spacing="5" styleClass="stat-card action-card" HBox.hgrow="ALWAYS">
+                <Label text="Active Forums" styleClass="stat-title"/>
+                <Label fx:id="activeForumsLabel" text="0" styleClass="stat-number"/>
+                <Label text="Forum categories" styleClass="stat-description"/>
+            </VBox>
+            
+            <!-- Posts This Month -->
+            <VBox spacing="5" styleClass="stat-card action-card" HBox.hgrow="ALWAYS">
+                <Label text="Posts This Month" styleClass="stat-title"/>
+                <Label fx:id="postsThisMonthLabel" text="0" styleClass="stat-number"/>
+                <Label text="Recent activity" styleClass="stat-description"/>
+            </VBox>
+        </HBox>
+        
+        <HBox spacing="15" alignment="CENTER_LEFT" styleClass="stats-container">
+            <!-- Average Posts per User -->
+            <VBox spacing="5" styleClass="stat-card user-card" HBox.hgrow="ALWAYS">
+                <Label text="Avg Posts/User" styleClass="stat-title"/>
+                <Label fx:id="avgPostsPerUserLabel" text="0" styleClass="stat-number"/>
+                <Label text="Engagement rate" styleClass="stat-description"/>
+            </VBox>
+            
+            <!-- Most Active Forum -->
+            <VBox spacing="5" styleClass="stat-card action-card" HBox.hgrow="ALWAYS">
+                <Label text="Most Active Forum" styleClass="stat-title"/>
+                <Label fx:id="mostActiveForumLabel" text="N/A" styleClass="stat-number"/>
+                <Label text="Top category" styleClass="stat-description"/>
+            </VBox>
+            
+            <!-- Total Favorites -->
+            <VBox spacing="5" styleClass="stat-card user-card" HBox.hgrow="ALWAYS">
+                <Label text="Total Favorites" styleClass="stat-title"/>
+                <Label fx:id="totalFavoritesLabel" text="0" styleClass="stat-number"/>
+                <Label text="Saved posts" styleClass="stat-description"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- FORUM ACTIVITY BAR CHART -->
+    <VBox fx:id="forumChartSection" spacing="12" styleClass="forum-card">
+        <Label text="📈 Forum Activity by User" styleClass="section-title"/>
+        <BarChart fx:id="forumActivityBarChart" prefHeight="300.0" VBox.vgrow="ALWAYS">
+            <xAxis>
+                <CategoryAxis label="Users"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Posts"/>
+            </yAxis>
+        </BarChart>
+    </VBox>
+
+    <!-- RECENT ACTIVITY -->
+    <VBox spacing="12" styleClass="forum-card">
+        <Label text="⚡ Recent Activity" styleClass="section-title"/>
+        
+        <VBox spacing="8">
+            <Label fx:id="recentActivityLabel" 
+                   text="Loading recent activity..." 
+                   styleClass="forum-description"
+                   wrapText="true"/>
+        </VBox>
+    </VBox>
+
+    <!-- FOOTER ACTIONS -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="refreshStatsButton" 
+                text="🔄 Refresh Statistics" 
+                styleClass="forum-button"
+                onAction="#refreshStatistics"/>
+    </HBox>
+
+    </VBox>
+</ScrollPane>
